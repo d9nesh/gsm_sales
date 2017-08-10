@@ -10,11 +10,59 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-
   <script>
   $(document).ready(function() {
-    $('#example').DataTable();
-  } );
+    $('#example').DataTable( {
+        "lengthMenu": [[-1, 10, 25, 50, 100], ["All", 10, 25, 50, 100]],
+        initComplete: function () {
+            this.api().columns([1]).every( function () {
+                var column = this;
+                var select = $('<select id ="business-segment" style="display: none;"><option value="">Amazon</option></select>')
+                    .appendTo( $(column.header()) )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    } );
+} );
+
+$(document).ready(function(){
+  var values = $('input[type=checkbox]:checked').map(function(_, el) {
+        return $(el).val();
+    }).get();
+  $('.asin-values').val(values);
+
+    $("#segment").click(function(){
+      var segmentValue = jQuery( "#segment").val();
+        console.log("Selected value: " + segmentValue);
+        if(segmentValue == "Amazon"){
+          segmentValue = "";
+        }
+        jQuery( "#business-segment" ).val(segmentValue).change();
+        var values = $('input[type=checkbox]:checked').map(function(_, el) {
+              return $(el).val();
+          }).get();
+        $('.asin-values').val(values);
+    });
+});
+  // $(document).ready(function() {
+  //   $('#example').DataTable( {
+  //       "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+  //       "responsive": true,
+  //       "scrollX": true
+  //     } );
+  //   } );
   </script>
 
   <style>
@@ -45,33 +93,16 @@
   </style>
 </head>
 <body>
-
-  <nav class="navbar navbar-inverse">
-   <div class="container-fluid">
-             <!-- Brand and toggle get grouped for better mobile display -->
-             <div class="navbar-header">
-                 <button type="button" class="navbar-toggle collapsed navbar-menu-collapse-button hamburger" data-open="false">
-                     <span class="icon-bar top"></span>
-                     <span class="icon-bar middle"></span>
-                     <span class="icon-bar bottom"></span>
-                 </button>
-                 <a class="navbar-brand" href="http://www.mobiles.clicknexpert.com">
-                    ClicknExpert
-                 </a>
-                 <button class="navbar-toggle pull-right search-header-btn-icon" data-toggle="collapse" data-target="#search-form-collapse" aria-expanded="false"><i class="fa fa-search"></i></button>
-             </div>
-                         <!-- Collect the nav links, forms, and other content for toggling -->
-   </div>
-  </nav>
+{{> header}}
 <div class="container">
 <div class="container-fluid">
   <div class="row content">
 
     <div class="col-sm-12">
-      <form class="form-inline" action="">
+      <form class="form-inline" action="/chart" method="get">
         <div class="form-group">
           <label for="segment">Business Segment:</label>
-          <select class="form-control" id="segment">
+          <select class="form-control" id="segment" name="segment">
             <option>Amazon</option>
             <option>Private Label</option>
             <option>Wholesale</option>
@@ -79,43 +110,40 @@
         </div>
         <div class="form-group">
           <label for="asin">ASIN:</label>
-          <input type="search" class="form-control" id="asin" placeholder="Search">
+          <input type="search" class="form-control" id="asin" name="asin" placeholder="Search">
         </div>
         <div class="form-group">
           <label for="chart">Day To Chart:</label>
-          <input type="number" class="form-control" id="chart" placeholder="Day TO Chart">
+          <input type="number" class="form-control" id="chart" name="chart" placeholder="Day TO Chart">
         </div>
+        <input type="hidden" class="asin-values" name="asin-values" value="" />
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
     </div>
 
     <div class="col-sm-12">
-      <!-- <form method="Post" action="asin_chart">
-        <select name="product_category">
-            <option value="amazon">Amazon</option>
-        </select>
-        <button type="submit" value="Get Chart">
-      </form> -->
-
       <table id="example" class="display" cellspacing="0" width="100%">
-       <tr>
-         <th>Checked</th>
-         <th>Product_Category</th>
-         <th>asin</th>
-         <th>title</th>
-         <th>Profit</th>
-       </tr>
-       {{#each products}}
-        <tr class="{{this.Product_Category}}">
-          <td><input type="checkbox" name="asin[]" value="{{this.asin}}" checked class="product_asin_check">
-          <td>{{this.Product_Category}}</td>
-          <td>{{this.asin}}</td>
-          <td>{{this.title}}</td>
-          <td>{{this.Profit}}</td>
-        </tr>
-       {{/each}}
-     </table>
-
+              <thead>
+                <tr>
+                  <th>Checked</th>
+                  <th>Product_Category</th>
+                  <th>Asin</th>
+                  <th>Title</th>
+                  <th>Profit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each products}}
+                 <tr class="{{this.Product_Category}}">
+                   <td><input type="checkbox" name="asin[]" value="{{this.asin}}" checked class="product_asin_check">
+                   <td>{{this.Product_Category}}</td>
+                   <td>{{this.asin}}</td>
+                   <td>{{this.title}}</td>
+                   <td>{{this.Profit}}</td>
+                 </tr>
+                {{/each}}
+              </tbody>
+          </table>
     </div>
   </div>
 </div>

@@ -13,7 +13,9 @@
 
   <script>
   $(document).ready(function() {
-    $('#example').DataTable();
+    $('#example').DataTable({
+      "lengthMenu": [[-1, 10, 25, 50, 100], ["All", 10, 25, 50, 100]]
+    });
   } );
   </script>
 
@@ -45,24 +47,7 @@
   </style>
 </head>
 <body>
-
-  <nav class="navbar navbar-inverse">
-   <div class="container-fluid">
-             <!-- Brand and toggle get grouped for better mobile display -->
-             <div class="navbar-header">
-                 <button type="button" class="navbar-toggle collapsed navbar-menu-collapse-button hamburger" data-open="false">
-                     <span class="icon-bar top"></span>
-                     <span class="icon-bar middle"></span>
-                     <span class="icon-bar bottom"></span>
-                 </button>
-                 <a class="navbar-brand" href="http://www.mobiles.clicknexpert.com">
-                    ClicknExpert
-                 </a>
-                 <button class="navbar-toggle pull-right search-header-btn-icon" data-toggle="collapse" data-target="#search-form-collapse" aria-expanded="false"><i class="fa fa-search"></i></button>
-             </div>
-                         <!-- Collect the nav links, forms, and other content for toggling -->
-   </div>
-  </nav>
+{{> header}}
 <div class="container">
 <div class="container-fluid">
   <div class="row content">
@@ -91,27 +76,29 @@
 
     <div class="col-sm-12">
       <table id="example" class="display" cellspacing="0" width="100%">
-       <tr>
-         <th>Sale Date</th>
-         <th>Hours</th>
-         <th>Minutes</th>
-         <th>Sum(quantity)</th>
-         <th>Sum(projectedprofit)</th>
-         <th>Max(purchasedate)</th>
-
-       </tr>
-       {{#each products}}
-        <tr class="{{this.Product_Category}}">
-          <td>{{this.saledate}}</td>
-          <td>{{this.hours}}</td>
-          <td>{{this.minutes}}</td>
-          <td>{{this.sum_quantity}}</td>
-          <td>{{this.sum_projectedprofit}}</td>
-          <td>{{this.max_purchasedate}}</td>
-        </tr>
-       {{/each}}
+        <thead>
+           <tr>
+             <th>Sale Date</th>
+             <th>Hours</th>
+             <th>Minutes</th>
+             <th>Sum(quantity)</th>
+             <th>Sum(projectedprofit)</th>
+             <th>Max(purchasedate)</th>
+           </tr>
+         </thead>
+         <tbody>
+           {{#each products}}
+            <tr class="{{this.Product_Category}}">
+              <td>{{this.saledate}}</td>
+              <td>{{this.hours}}</td>
+              <td>{{this.minutes}}</td>
+              <td>{{this.sum_quantity}}</td>
+              <td>{{this.sum_projectedprofit}}</td>
+              <td>{{this.max_purchasedate}}</td>
+            </tr>
+           {{/each}}
+         </tbody>
      </table>
-
     </div>
   </div>
 </div>
