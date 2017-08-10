@@ -99,7 +99,7 @@ $(document).ready(function(){
   <div class="row content">
 
     <div class="col-sm-12">
-      <form class="form-inline" action="/chart" method="get">
+      <form class="form-inline" action="/chart" method="post">
         <div class="form-group">
           <label for="segment">Business Segment:</label>
           <select class="form-control" id="segment" name="segment">
@@ -114,9 +114,9 @@ $(document).ready(function(){
         </div>
         <div class="form-group">
           <label for="chart">Day To Chart:</label>
-          <input type="number" class="form-control" id="chart" name="chart" placeholder="Day TO Chart">
+          <input type="number" class="form-control" id="chart" name="chart" placeholder="Day TO Chart" value="10">
         </div>
-        <input type="hidden" class="asin-values" name="asin-values" value="" />
+        <input type="hidden" class="asin-values" name="asin_values" value="" />
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
     </div>

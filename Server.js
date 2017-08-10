@@ -2,6 +2,9 @@ var express = require('express');
 const hbs = require('hbs');
 var mysql = require('mysql');
 var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 var connection = mysql.createConnection({
   host: 'gsmdev.cnlb2que19vq.us-west-2.rds.amazonaws.com',
@@ -37,22 +40,23 @@ app.get('/', (req, res) => {
   // connection.end();
 });
 
-app.get('/chart', (req, res) => {
-  let chart = req.query['chart'];
-  let asinValues = req.query['asin-values'];
-  let asin = req.query['asin'];
-  let segment = req.query['segment'];
+app.post('/chart', (req, res) => {
+  console.log(req.body);
+  let chart = parseInt(req.body.chart);
+  let asinValues = req.body.asin_values;
+  let asin = req.body.asin;
+  let segment = req.body.segment;
   var select_profit_chart_data;
   if (asin !== ""){
-    select_profit_chart_data = `CALL select_profit_chart_data("${asin}",10)`;
+    select_profit_chart_data = `CALL select_profit_chart_data("${asin}",${chart})`;
   }else {
-    select_profit_chart_data = `CALL select_profit_chart_data("${asinValues}",10)`;
+    select_profit_chart_data = `CALL select_profit_chart_data("${asinValues}",${chart})`;
   }
-  console.log(select_profit_chart_data);
 
-  // console.log('Business Segment: ' + segment);
-  // console.log('ASIN: ' + asin);
-  // console.log('Day to chart: ' + chart);
+
+  console.log('Business Segment: ' + segment);
+  console.log('ASIN: ' + select_profit_chart_data);
+  console.log('Day to chart: ' + typeof chart);
 
   connection.query(select_profit_chart_data, true, (error, results, fields) => {
     // console.log(JSON.stringify(results[0][0]['sum(quantity)'], undefined, 2));
