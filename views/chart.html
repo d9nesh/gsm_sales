@@ -28,9 +28,10 @@
 <script type="text/javascript">
   $(function () {
     var data = {{{chartData}}};
-    console.log(data.length);
-
     var chartData =[];
+    var profitData = [];
+    var profitdateExist = [];
+    var profitdatapoints = [];
     var dateExist = [];
     var datapoints = [];
     var temp = 0;
@@ -38,16 +39,39 @@
       sale_date = data[i].sale_date;
       if (dateExist[sale_date] != undefined){
         count = dateExist[sale_date];
-        datapoints[sale_date].push({
-          x:parseInt(data[i].sale_hour),
-          y:data[i].quantity
-        });
-        console.log("Count: " + count);
-        console.log("SaleDate: " + sale_date);
+        var pointupdate = true;
+        for (var point=0 ; point < datapoints[sale_date].length; point++){
+            if(datapoints[sale_date][point].x == data[i].sale_hour){
+              console.log("Date time found");
+              pointupdate = false;
+              datapoints[sale_date][point].y = parseInt(datapoints[sale_date][point].y) + parseInt(data[i].quantity);
+              profitdatapoints[sale_date][point].y = parseInt(profitdatapoints[sale_date][point].y) + parseInt(data[i].profit);
+            }
+        }
+
+        if(pointupdate){
+          datapoints[sale_date].push({
+            x:parseInt(data[i].sale_hour),
+            y:data[i].quantity
+          });
+
+          profitdatapoints[sale_date].push({
+            x:parseInt(data[i].sale_hour),
+            y:data[i].profit
+          });
+        }
         chartData[count] = {
             type: "line",
             xValueType : "number",
+            name: sale_date,
             dataPoints : datapoints[sale_date]
+        }
+
+        profitData[count] = {
+            type: "line",
+            xValueType : "number",
+            name: sale_date,
+            dataPoints : profitdatapoints[sale_date]
         }
       }else{
 
@@ -57,52 +81,62 @@
           x:parseInt(data[i].sale_hour),
           y:data[i].quantity
         });
+
+        profitdatapoints[sale_date] = [];
+        profitdatapoints[sale_date].push({
+          x:parseInt(data[i].sale_hour),
+          y:data[i].profit
+        });
+
         chartData[temp] = {
           type: "line",
           xValueType : "number",
+          name: sale_date,
           dataPoints : [{
             x:parseInt(data[i].sale_hour),
             y:data[i].quantity
           }]
         }
+
+        profitData[temp] = {
+          type: "line",
+          xValueType : "number",
+          name: sale_date,
+          dataPoints : [{
+            x:parseInt(data[i].sale_hour),
+            y:data[i].profit
+          }]
+        }
+
         temp = temp + 1;
       }
     }
 
-    for(i=0;i < chartData.length;i++){
-      console.log(i + "=" + chartData[i]);
-    }
-
-
 	   //Better to construct options first and then pass it as a parameter
 	    var options1 = {
 		      title: {
-			         text: "GSM SALES: Daily Chart"
+			         text: "GSM SALES: Daily Chart Sales"
 		          },
               animationEnabled: true,
-              //axisX:{
-              //  title: "Time",
-              //  valueFormatString: "hh",
-              //  labelAngle: -20
-              //},
               axisY:{
-                title: "Quantity"
+                title: "Sales"
               },
-              data: chartData,//[
-		          //{
-		           //   type: "line", //change it to line, area, bar, pie, etc
-			         //   dataPoints: chartData
-		         // }
-		//],
-      // axisX: {
-      //   labelFontSize: 14
-      // },
-      //    axisY: {
-      //   labelFontSize: 14
-      // }
-	};
+              data: chartData,
+	      };
+
+        var profitOptions = {
+  		      title: {
+  			         text: "GSM SALES: Daily Chart Profit"
+  		          },
+                animationEnabled: true,
+                axisY:{
+                  title: "Profit"
+                },
+                data: chartData,
+  	};
 
   $("#chartContainer1").CanvasJSChart(options1);
+  $('#profitchartContainer').CanvasJSChart(profitOptions);
 });
 </script>
   <style>
@@ -167,7 +201,12 @@
      </table>
     </div>
     <div class="col-sm-12">
-      <div id="chartContainer1" style="height: 240px; width: 100%;"></div>
+      <div class="col-sm-6">
+        <div id="chartContainer1" style="height: 240px; width: 100%;"></div>
+      </div>
+      <div class="col-sm-6">
+        <div id="profitchartContainer" style="height: 240px; width: 100%;"></div>
+      </div>
     </div>
   </div>
 </div>

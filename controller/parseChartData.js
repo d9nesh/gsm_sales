@@ -20,13 +20,14 @@ var chartData = (data) => {
   var dateExist = [];
   for (var i in data){
     var sale_date = dateFormat(data[i].saledate, "yyyymmdd");
-    dataObj[i] = {
-      date_time : dateFormat(data[i]['max(purchasedate)'], "UTC:ddd mmm dd yyyy HH:MM:ss"),
-      quantity : data[i].quantity,
-      sale_date: sale_date,
-      sale_hour: data[i].hours
+      dataObj[i] = {
+        date_time : dateFormat(data[i]['max(purchasedate)'], "UTC:ddd mmm dd yyyy HH:MM:ss"),
+        quantity : data[i].quantity,
+        sale_date: sale_date,
+        sale_hour: data[i].hours,
+        profit:  data[i].projectedprofit
+      }
     }
-  }
   return dataObj;
 };
 
