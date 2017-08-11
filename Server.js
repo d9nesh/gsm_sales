@@ -39,13 +39,15 @@ app.post('/chart', (req, res) => {
     profitChartQuery = `CALL select_profit_chart_data("${asinValues}",${chart})`;
   }
   db.getData(profitChartQuery, (error, results) => {
-    var saleData = parseChartData.parseData(results);
     if (error) {
         return console.error(error);
       }
       else {
+        var saleData = parseChartData.parseData(results);
+        var chartData = parseChartData.chartData(results);
         res.render('chart', {
-            products: saleData
+            products: saleData,
+            chartData: JSON.stringify(chartData)
           });
       }
   });

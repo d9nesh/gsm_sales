@@ -27,35 +27,79 @@
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 <script type="text/javascript">
   $(function () {
+    var data = {{{chartData}}};
+    console.log(data.length);
+
+    var chartData =[];
+    var dateExist = [];
+    var datapoints = [];
+    var temp = 0;
+    for (var i = 0; i < data.length; i++) {
+      sale_date = data[i].sale_date;
+      if (dateExist[sale_date] != undefined){
+        count = dateExist[sale_date];
+        datapoints[sale_date].push({
+          x:parseInt(data[i].sale_hour),
+          y:data[i].quantity
+        });
+        console.log("Count: " + count);
+        console.log("SaleDate: " + sale_date);
+        chartData[count] = {
+            type: "line",
+            xValueType : "number",
+            dataPoints : datapoints[sale_date]
+        }
+      }else{
+
+        dateExist[sale_date] = temp;
+        datapoints[sale_date] = [];
+        datapoints[sale_date].push({
+          x:parseInt(data[i].sale_hour),
+          y:data[i].quantity
+        });
+        chartData[temp] = {
+          type: "line",
+          xValueType : "number",
+          dataPoints : [{
+            x:parseInt(data[i].sale_hour),
+            y:data[i].quantity
+          }]
+        }
+        temp = temp + 1;
+      }
+    }
+
+    for(i=0;i < chartData.length;i++){
+      console.log(i + "=" + chartData[i]);
+    }
+
 
 	   //Better to construct options first and then pass it as a parameter
 	    var options1 = {
 		      title: {
-			         text: "Spline Chart using jQuery Plugin"
+			         text: "GSM SALES: Daily Chart"
 		          },
-                animationEnabled: true,
-		data: [
-		{
-		type: "line", //change it to line, area, bar, pie, etc
-			dataPoints: [
-				{ y: 10 },
-				{ y: 6 },
-				{ y: 14 },
-				{ y: 12 },
-				{ y: 19 },
-				{ y: 14 },
-				{ y: 26 },
-				{ y: 10 },
-				{ y: 22 }
-			]
-		}
-		],
-      axisX: {
-        labelFontSize: 14
-      },
-         axisY: {
-        labelFontSize: 14
-      }
+              animationEnabled: true,
+              //axisX:{
+              //  title: "Time",
+              //  valueFormatString: "hh",
+              //  labelAngle: -20
+              //},
+              axisY:{
+                title: "Quantity"
+              },
+              data: chartData,//[
+		          //{
+		           //   type: "line", //change it to line, area, bar, pie, etc
+			         //   dataPoints: chartData
+		         // }
+		//],
+      // axisX: {
+      //   labelFontSize: 14
+      // },
+      //    axisY: {
+      //   labelFontSize: 14
+      // }
 	};
 
   $("#chartContainer1").CanvasJSChart(options1);
