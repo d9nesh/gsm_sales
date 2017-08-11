@@ -44,16 +44,23 @@
         var profitQuantity = 0;
 
         var datalength = datapoints[sale_date].length;
-        console.log(datalength);
+        //console.log(datalength);
         if(datalength != undefined){
-          console.log(datalength);
+          //console.log(datalength);
           datalength = datalength - 1;
           saleQuantity = parseInt(datapoints[sale_date][datalength].y);
           profitQuantity = parseInt(profitdatapoints[sale_date][datalength].y);
-      }
+        }
 
+        for (var point=0 ; point < datapoints[sale_date].length; point++){
+           if(datapoints[sale_date][point].x == data[i].sale_hour){
+             pointupdate = false;
+             datapoints[sale_date][point].y = saleQuantity + parseInt(data[i].quantity);
+             profitdatapoints[sale_date][point].y = profitQuantity + parseInt(data[i].profit);
+           }
+       }
 
-        //if(pointupdate){
+        if(pointupdate){
           datapoints[sale_date].push({
             x:parseInt(data[i].sale_hour),
             y:parseInt(data[i].quantity) + parseInt(saleQuantity)
@@ -63,7 +70,7 @@
             x:parseInt(data[i].sale_hour),
             y:parseInt(data[i].profit) + profitQuantity
           });
-        // }
+       }
         chartData[count] = {
             type: "line",
             xValueType : "number",
