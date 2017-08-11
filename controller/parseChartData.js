@@ -4,7 +4,7 @@ var parseData = (data) => {
   var saleData = []
   for (var i in data){
     saleData[i] = {
-      "saledate" : dateFormat(data[i].saledate, "yyyy-mm-dd"),
+      "saledate" : dateFormat(data[i].saledate, "UTC:yyyy-mm-dd"),
       "hours" : data[i].hours,
       "minutes" : data[i].minutes,
       "sum_quantity" : data[i].quantity,

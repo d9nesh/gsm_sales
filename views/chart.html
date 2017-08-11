@@ -40,26 +40,30 @@
       if (dateExist[sale_date] != undefined){
         count = dateExist[sale_date];
         var pointupdate = true;
-        for (var point=0 ; point < datapoints[sale_date].length; point++){
-            if(datapoints[sale_date][point].x == data[i].sale_hour){
-              console.log("Date time found");
-              pointupdate = false;
-              datapoints[sale_date][point].y = parseInt(datapoints[sale_date][point].y) + parseInt(data[i].quantity);
-              profitdatapoints[sale_date][point].y = parseInt(profitdatapoints[sale_date][point].y) + parseInt(data[i].profit);
-            }
-        }
+        var saleQuantity = 0;
+        var profitQuantity = 0;
 
-        if(pointupdate){
+        var datalength = datapoints[sale_date].length;
+        console.log(datalength);
+        if(datalength != undefined){
+          console.log(datalength);
+          datalength = datalength - 1;
+          saleQuantity = parseInt(datapoints[sale_date][datalength].y);
+          profitQuantity = parseInt(profitdatapoints[sale_date][datalength].y);
+      }
+
+
+        //if(pointupdate){
           datapoints[sale_date].push({
             x:parseInt(data[i].sale_hour),
-            y:data[i].quantity
+            y:parseInt(data[i].quantity) + parseInt(saleQuantity)
           });
 
           profitdatapoints[sale_date].push({
             x:parseInt(data[i].sale_hour),
-            y:data[i].profit
+            y:parseInt(data[i].profit) + profitQuantity
           });
-        }
+        // }
         chartData[count] = {
             type: "line",
             xValueType : "number",
@@ -112,6 +116,7 @@
       }
     }
 
+    console.log("data length" + datapoints)
 	   //Better to construct options first and then pass it as a parameter
 	    var options1 = {
 		      title: {
@@ -130,6 +135,9 @@
   		          },
                 animationEnabled: true,
                 axisY:{
+                  title: "Profit"
+                },
+                axisX:{
                   title: "Profit"
                 },
                 data: profitData,
@@ -202,10 +210,10 @@
     </div>
     <div class="col-sm-12">
       <div class="col-sm-6">
-        <div id="chartContainer1" style="height: 240px; width: 100%;"></div>
+        <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
       </div>
       <div class="col-sm-6">
-        <div id="profitchartContainer" style="height: 240px; width: 100%;"></div>
+        <div id="profitchartContainer" style="height: 300px; width: 100%;"></div>
       </div>
     </div>
   </div>
