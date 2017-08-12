@@ -12,6 +12,9 @@
   <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
   <script>
   $(document).ready(function() {
+
+
+// DataTable Initialization function
     $('#example').DataTable( {
         // "searching": false,
         "scrollY"  : "300px",
@@ -34,41 +37,44 @@
 
                 column.data().unique().sort().each( function ( d, j ) {
                     select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-        }
-    } );
-} );
-
-$(document).ready(function(){
-      $("#segment").change(function(){
-      var segmentValue = jQuery( "#segment").val();
-        console.log("Selected value: " + segmentValue);
-        if(segmentValue == "Amazon"){
-          segmentValue = "";
-        }
-        jQuery( "#business-segment" ).val(segmentValue).change();
-        var values = $('input[type=checkbox]:checked').map(function(_, el) {
-              return $(el).val();
-          }).get();
-        $('.asin-values').val(values);
+                });
+            });
+          }
     });
-});
 
-$(document).ready(function(){
-  var values = $('input[type=checkbox]:checked').map(function(_, el) {
-        return $(el).val();
-    }).get();
-  $('.asin-values').val(values);
-  console.log(values.length);
-});
-  // $(document).ready(function() {
-  //   $('#example').DataTable( {
-  //       "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-  //       "responsive": true,
-  //       "scrollX": true
-  //     } );
-  //   } );
+
+// Change Business Segment Value function
+    $("#segment").change(function(){
+    var segmentValue = jQuery( "#segment").val();
+      console.log("Selected value: " + segmentValue);
+      if(segmentValue == "Amazon"){
+        segmentValue = "";
+      }
+      jQuery( "#business-segment" ).val(segmentValue).change();
+    });
+
+
+// Check/Uncheck all Checkbox function
+    jQuery("#check").click(function() {
+      if (this.checked == true) {
+        $("input[name='asin[]']").prop("checked", true);
+      }
+      else {
+          $("input[name='asin[]']").prop("checked", false);
+      }
+    });
+
+
+//  Submit all checked checkbox values function
+    $('#submit-form').click(function functionName() {
+      var values = $('.product_asin_check:checked').map(function(_, el) {
+            return $(el).val();
+        }).get();
+      $('.asin-values').val(values);
+    });
+
+  });
+
   </script>
 
   <style>
@@ -125,15 +131,19 @@ $(document).ready(function(){
           <input type="number" class="form-control" id="chart" name="chart" min="1" max="10" value="5">
         </div>
         <input type="hidden" class="asin-values" name="asin_values" value="" />
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" id="submit-form" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Generate Chart</button>
       </form>
     </div>
-
+    <div class="col-sm-12">
+      <label for="check" class="form-group-font">All Checked/Unchecked :</label>
+      <input type="checkbox" name="check" id="check" class="check" checked>
+    </div>
     <div class="col-sm-12">
       <table id="example" class="display" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                  <th>Checked</th>
+                  <th><Checked</th>
                   <th>Product_Category</th>
                   <th>Asin</th>
                   <th>Title</th>
@@ -153,6 +163,29 @@ $(document).ready(function(){
               </tbody>
           </table>
     </div>
+
+
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title">Daily Chart</h2>
+        </div>
+        <div class="modal-body">
+
+          <p>Chart gose here.</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
   </div>
 </div>
 </div>

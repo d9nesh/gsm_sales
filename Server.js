@@ -32,12 +32,20 @@ app.post('/chart', (req, res) => {
   let chart = parseInt(req.body.chart);
   let asinValues = req.body.asin_values;
   let asin = req.body.asin;
+
+  // console.log('Input Values : ' + asin);
+  // console.log('Checkbox Values : ' + asinValues);
+  // console.log('Checkbox length : ' + asinValues.split(",").length);
+
   var profitChartQuery;
   if (asin !== ""){
     profitChartQuery = `CALL select_profit_chart_data("${asin}",${chart})`;
   }else {
     profitChartQuery = `CALL select_profit_chart_data("${asinValues}",${chart})`;
   }
+
+  // console.log('Query => ' + profitChartQuery);
+
   db.getData(profitChartQuery, (error, results) => {
     if (error) {
         return console.error(error);
@@ -49,6 +57,26 @@ app.post('/chart', (req, res) => {
             products: saleData,
             chartData: JSON.stringify(chartData)
           });
+      }
+  });
+});
+
+app.get('/api/chartdata', (req, res) => {
+  var asin = req.query.asin;
+  var chart_day = req.query.chart_day;
+  var profitChartQuery = `CALL select_profit_chart_data("${asin}",${chart_day})`;
+
+  db.getData(profitChartQuery, (error, results) => {
+    if (error) {
+        return console.error(error);
+      }
+      else {
+        var chartData = parseChartData.chartData(results);
+        console.log(JSON.stringify(chartData, undefined, 2));
+        console.log(chartData.length);
+        res.send({
+          data:chartData
+        });
       }
   });
 });
