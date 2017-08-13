@@ -86,143 +86,151 @@ $(document).ready(function() {
       };
     }
 
+    jQuery("#ajax_loader").show();
+    $("#chartContainer1").hide();
+    $("#profitchartContainer").hide();
+    $.ajax({
+      dataType: "json",
+      url: "/api/chartdata",
+      type : 'get',
+      // data: {asin:"B01F1CP0DS,B01MT8HASA", chart_day:5},
+      data : requestData,
+      contentType : 'application/json',
+      success: function (data) {
+        jQuery("#ajax_loader").hide();
+        $("#chartContainer1").show();
+        $("#profitchartContainer").show();
+        var data = data.data;
+        var chartData =[];
+        var profitData = [];
+        var profitdateExist = [];
+        var profitdatapoints = [];
+        var dateExist = [];
+        var datapoints = [];
+        var temp = 0;
+        for (var i = 0; i < data.length; i++) {
+          sale_date = data[i].sale_date;
+          if (dateExist[sale_date] != undefined){
+            count = dateExist[sale_date];
+            var pointupdate = true;
+            var saleQuantity = 0;
+            var profitQuantity = 0;
 
-  $.ajax({
-    dataType: "json",
-    url: "/api/chartdata",
-    type : 'get',
-    // data: {asin:"B01F1CP0DS,B01MT8HASA", chart_day:5},
-    data : requestData,
-    contentType : 'application/json',
-    success: function (data) {
-      var data = data.data;
-      var chartData =[];
-      var profitData = [];
-      var profitdateExist = [];
-      var profitdatapoints = [];
-      var dateExist = [];
-      var datapoints = [];
-      var temp = 0;
-      for (var i = 0; i < data.length; i++) {
-        sale_date = data[i].sale_date;
-        if (dateExist[sale_date] != undefined){
-          count = dateExist[sale_date];
-          var pointupdate = true;
-          var saleQuantity = 0;
-          var profitQuantity = 0;
-
-          var datalength = datapoints[sale_date].length;
-          //console.log(datalength);
-          if(datalength != undefined){
+            var datalength = datapoints[sale_date].length;
             //console.log(datalength);
-            datalength = datalength - 1;
-            saleQuantity = parseInt(datapoints[sale_date][datalength].y);
-            profitQuantity = parseInt(profitdatapoints[sale_date][datalength].y);
-          }
+            if(datalength != undefined){
+              //console.log(datalength);
+              datalength = datalength - 1;
+              saleQuantity = parseInt(datapoints[sale_date][datalength].y);
+              profitQuantity = parseInt(profitdatapoints[sale_date][datalength].y);
+            }
 
-          for (var point=0 ; point < datapoints[sale_date].length; point++){
-             if(datapoints[sale_date][point].x == data[i].sale_hour){
-               pointupdate = false;
-               datapoints[sale_date][point].y = saleQuantity + parseInt(data[i].quantity);
-               profitdatapoints[sale_date][point].y = profitQuantity + parseInt(data[i].profit);
-             }
-         }
+            for (var point=0 ; point < datapoints[sale_date].length; point++){
+               if(datapoints[sale_date][point].x == data[i].sale_hour){
+                 pointupdate = false;
+                 datapoints[sale_date][point].y = saleQuantity + parseInt(data[i].quantity);
+                 profitdatapoints[sale_date][point].y = profitQuantity + parseInt(data[i].profit);
+               }
+           }
 
-          if(pointupdate){
+            if(pointupdate){
+              datapoints[sale_date].push({
+                x:parseInt(data[i].sale_hour),
+                y:parseInt(data[i].quantity) + parseInt(saleQuantity)
+              });
+
+              profitdatapoints[sale_date].push({
+                x:parseInt(data[i].sale_hour),
+                y:parseInt(data[i].profit) + profitQuantity
+              });
+           }
+            chartData[count] = {
+                type: "line",
+                xValueType : "number",
+                name: sale_date,
+                dataPoints : datapoints[sale_date]
+            }
+
+            profitData[count] = {
+                type: "line",
+                xValueType : "number",
+                name: sale_date,
+                dataPoints : profitdatapoints[sale_date]
+            }
+          }else{
+
+            dateExist[sale_date] = temp;
+            datapoints[sale_date] = [];
             datapoints[sale_date].push({
               x:parseInt(data[i].sale_hour),
-              y:parseInt(data[i].quantity) + parseInt(saleQuantity)
+              y:data[i].quantity
             });
 
+            profitdatapoints[sale_date] = [];
             profitdatapoints[sale_date].push({
               x:parseInt(data[i].sale_hour),
-              y:parseInt(data[i].profit) + profitQuantity
-            });
-         }
-          chartData[count] = {
-              type: "line",
-              xValueType : "number",
-              name: sale_date,
-              dataPoints : datapoints[sale_date]
-          }
-
-          profitData[count] = {
-              type: "line",
-              xValueType : "number",
-              name: sale_date,
-              dataPoints : profitdatapoints[sale_date]
-          }
-        }else{
-
-          dateExist[sale_date] = temp;
-          datapoints[sale_date] = [];
-          datapoints[sale_date].push({
-            x:parseInt(data[i].sale_hour),
-            y:data[i].quantity
-          });
-
-          profitdatapoints[sale_date] = [];
-          profitdatapoints[sale_date].push({
-            x:parseInt(data[i].sale_hour),
-            y:data[i].profit
-          });
-
-          chartData[temp] = {
-            type: "line",
-            xValueType : "number",
-            name: sale_date,
-            dataPoints : [{
-              x:parseInt(data[i].sale_hour),
-              y:data[i].quantity
-            }]
-          }
-
-          profitData[temp] = {
-            type: "line",
-            xValueType : "number",
-            name: sale_date,
-            dataPoints : [{
-              x:parseInt(data[i].sale_hour),
               y:data[i].profit
-            }]
+            });
+
+            chartData[temp] = {
+              type: "line",
+              xValueType : "number",
+              name: sale_date,
+              dataPoints : [{
+                x:parseInt(data[i].sale_hour),
+                y:data[i].quantity
+              }]
+            }
+
+            profitData[temp] = {
+              type: "line",
+              xValueType : "number",
+              name: sale_date,
+              dataPoints : [{
+                x:parseInt(data[i].sale_hour),
+                y:data[i].profit
+              }]
+            }
+
+            temp = temp + 1;
           }
-
-          temp = temp + 1;
         }
-      }
 
-      console.log("data length" + datapoints)
-       //Better to construct options first and then pass it as a parameter
-        var options1 = {
-            title: {
-                 text: "GSM SALES: Daily Chart Sales"
-                },
-                animationEnabled: true,
-                axisY:{
-                  title: "Sales"
-                },
-                data: chartData,
-          };
-
-          var profitOptions = {
+        console.log("data length" + datapoints)
+         //Better to construct options first and then pass it as a parameter
+          var options1 = {
               title: {
-                   text: "GSM SALES: Daily Chart Profit"
+                   text: "GSM SALES: Daily Chart Sales"
                   },
                   animationEnabled: true,
                   axisY:{
-                    title: "Profit"
+                    title: "Sales"
                   },
                   axisX:{
-                    title: "Profit"
+                    title: "Time"
                   },
-                  data: profitData,
-      };
+                  data: chartData,
+            };
 
-    $("#chartContainer1").CanvasJSChart(options1);
-    $('#profitchartContainer').CanvasJSChart(profitOptions);
-    }
+            var profitOptions = {
+                title: {
+                     text: "GSM SALES: Daily Chart Profit"
+                    },
+                    animationEnabled: true,
+                    axisY:{
+                      title: "Profit"
+                    },
+                    axisX:{
+                      title: "Time"
+                    },
+                    data: profitData,
+        };
 
-  });
+      $("#chartContainer1").CanvasJSChart(options1);
+      $('#profitchartContainer').CanvasJSChart(profitOptions);
+      }
+
+    });
 
 });
 
