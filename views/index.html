@@ -10,72 +10,11 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-  <script>
-  $(document).ready(function() {
-
-
-// DataTable Initialization function
-    $('#example').DataTable( {
-        // "searching": false,
-        "scrollY"  : "300px",
-        "scrollCollapse": true,
-        "paging": false,
-        initComplete: function () {
-            this.api().columns([1]).every( function () {
-                var column = this;
-                var select = $('<select id ="business-segment" style="display: none;"><option value="">Amazon</option></select>')
-                    .appendTo( $(column.header()) )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                        );
-
-                        column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
-                    } );
-
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                });
-            });
-          }
-    });
-
-
-// Change Business Segment Value function
-    $("#segment").change(function(){
-    var segmentValue = jQuery( "#segment").val();
-      console.log("Selected value: " + segmentValue);
-      if(segmentValue == "Amazon"){
-        segmentValue = "";
-      }
-      jQuery( "#business-segment" ).val(segmentValue).change();
-    });
-
-
-// Check/Uncheck all Checkbox function
-    jQuery("#check").click(function() {
-      if (this.checked == true) {
-        $("input[name='asin[]']").prop("checked", true);
-      }
-      else {
-          $("input[name='asin[]']").prop("checked", false);
-      }
-    });
-
-
-//  Submit all checked checkbox values function
-    $('#submit-form').click(function functionName() {
-      var values = $('.product_asin_check:checked').map(function(_, el) {
-            return $(el).val();
-        }).get();
-      $('.asin-values').val(values);
-    });
-
-  });
-
-  </script>
+  <link href="https://canvasjs.com/assets/css/jquery-ui.1.11.2.min.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-ui.1.11.2.min.js"></script>
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+  <link rel="stylesheet" href="css/custom.css">
+  <script type="text/javascript" src="js/custom.js"></script>
 
   <style>
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
@@ -132,7 +71,7 @@
         </div>
         <input type="hidden" class="asin-values" name="asin_values" value="" />
         <button type="submit" id="submit-form" class="btn btn-primary">Submit</button>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Generate Chart</button>
+        <button type="button" id="genrate-chart" class="btn btn-info" data-toggle="modal" data-target="#myModal">Generate Chart</button>
       </form>
     </div>
     <div class="col-sm-12">
@@ -174,7 +113,14 @@
         </div>
         <div class="modal-body">
 
-          <p>Chart gose here.</p>
+          <div class="col-sm-12">
+            <div class="col-sm-6">
+              <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
+            </div>
+            <div class="col-sm-6">
+              <div id="profitchartContainer" style="height: 300px; width: 100%;"></div>
+            </div>
+          </div>
 
         </div>
         <div class="modal-footer">
