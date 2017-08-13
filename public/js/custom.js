@@ -89,7 +89,7 @@ $(document).ready(function() {
 
   $.ajax({
     dataType: "json",
-    url: "http://localhost:3000/api/chartdata",
+    url: "/api/chartdata",
     type : 'get',
     // data: {asin:"B01F1CP0DS,B01MT8HASA", chart_day:5},
     data : requestData,

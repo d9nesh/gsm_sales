@@ -65,7 +65,7 @@ app.get('/api/chartdata', (req, res) => {
   var asin = req.query.asin;
   var chart_day = req.query.chart_day;
   var profitChartQuery = `CALL select_profit_chart_data("${asin}",${chart_day})`;
-console.log('Query : ' + profitChartQuery);
+
   db.getData(profitChartQuery, (error, results) => {
     if (error) {
         return console.error(error);
