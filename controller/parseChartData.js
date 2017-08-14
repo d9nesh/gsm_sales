@@ -21,12 +21,19 @@ var chartData = (data) => {
   for (var i in data){
     var sale_date = dateFormat(data[i].saledate, "yyyymmdd");
     var print_date = dateFormat(data[i].saledate, "yyyy-mm-dd");
+    var projectedprofit = 0;
+    projectedprofit = data[i].projectedprofit;
+    if (data[i].projectedprofit === null || data[i].projectedprofit === ""){
+        projectedprofit = 0;
+    }
+
+
       dataObj[i] = {
         date_time : dateFormat(data[i]['max(purchasedate)'], "UTC:ddd mmm dd yyyy HH:MM:ss"),
         quantity : data[i].quantity,
         sale_date: sale_date,
         sale_hour: data[i].hours,
-        profit:  data[i].projectedprofit,
+        profit:  projectedprofit,
         printDate: print_date
       }
     }

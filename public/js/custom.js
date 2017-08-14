@@ -118,6 +118,7 @@ $(document).ready(function() {
                       var pointupdate = true;
                       var saleQuantity = 0;
                       var profitQuantity = 0;
+                      var profitdata = 0;
 
                       var datalength = datapoints[sale_date].length;
                       if(datalength != undefined){
@@ -129,21 +130,31 @@ $(document).ready(function() {
                       for (var point=0 ; point < datapoints[sale_date].length; point++){
                           if(datapoints[sale_date][point].x == data[i].sale_hour){
                                 pointupdate = false;
-                                datapoints[sale_date][point].y = saleQuantity + parseInt(data[i].quantity);
-                                profitdatapoints[sale_date][point].y = profitQuantity + parseInt(data[i].profit);
+                                if(parseInt(data[i].quantity) != 'NaN'){
+                                  datapoints[sale_date][point].y = saleQuantity + parseInt(data[i].quantity);
+                                  profitdatapoints[sale_date][point].y = profitQuantity + parseInt(data[i].profit);
+                                  profitdata = profitQuantity + parseInt(data[i].profit);
+                                }else{
+                                  // console.log("Found NAN: " + parseInt(data[i].quantity));
+                                }
                           }
                       }
 
                       if(pointupdate){
-                          datapoints[sale_date].push({
-                              x:parseInt(data[i].sale_hour),
-                              y:parseInt(data[i].quantity) + parseInt(saleQuantity)
-                          });
+                          if(parseInt(data[i].quantity) != 'NaN'){
+                            profitdata = parseInt(data[i].profit) + profitQuantity;
 
-                          profitdatapoints[sale_date].push({
-                              x:parseInt(data[i].sale_hour),
-                              y:parseInt(data[i].profit) + profitQuantity
-                          });
+                            datapoints[sale_date].push({
+                                x:parseInt(data[i].sale_hour),
+                                y:parseInt(data[i].quantity) + parseInt(saleQuantity)
+                            });
+
+                            profitdatapoints[sale_date].push({
+                                x:parseInt(data[i].sale_hour),
+                                y:parseInt(data[i].profit) + profitQuantity
+                            });
+                          }
+
                       }
 
                       chartData[count] = {
@@ -242,7 +253,7 @@ $(document).ready(function() {
                 };
                 $("#chartContainer1").CanvasJSChart(options1);
                 $('#profitchartContainer').CanvasJSChart(profitOptions);
-                // console.log(JSON.stringify(profitData, undefined, 2));
+              //  console.log(JSON.stringify(profitData, undefined, 2));
           }
       });
   });
