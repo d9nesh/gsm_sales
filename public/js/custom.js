@@ -130,18 +130,13 @@ $(document).ready(function() {
                       for (var point=0 ; point < datapoints[sale_date].length; point++){
                           if(datapoints[sale_date][point].x == data[i].sale_hour){
                                 pointupdate = false;
-                                if(parseInt(data[i].quantity) != 'NaN'){
-                                  datapoints[sale_date][point].y = saleQuantity + parseInt(data[i].quantity);
-                                  profitdatapoints[sale_date][point].y = profitQuantity + parseInt(data[i].profit);
-                                  profitdata = profitQuantity + parseInt(data[i].profit);
-                                }else{
-                                  // console.log("Found NAN: " + parseInt(data[i].quantity));
-                                }
+                                datapoints[sale_date][point].y = saleQuantity + parseInt(data[i].quantity);
+                                profitdatapoints[sale_date][point].y = profitQuantity + parseInt(data[i].profit);
+                                profitdata = profitQuantity + parseInt(data[i].profit);
                           }
                       }
 
                       if(pointupdate){
-                          if(parseInt(data[i].quantity) != 'NaN'){
                             profitdata = parseInt(data[i].profit) + profitQuantity;
 
                             datapoints[sale_date].push({
@@ -153,8 +148,6 @@ $(document).ready(function() {
                                 x:parseInt(data[i].sale_hour),
                                 y:parseInt(data[i].profit) + profitQuantity
                             });
-                          }
-
                       }
 
                       chartData[count] = {
@@ -253,7 +246,6 @@ $(document).ready(function() {
                 };
                 $("#chartContainer1").CanvasJSChart(options1);
                 $('#profitchartContainer').CanvasJSChart(profitOptions);
-              //  console.log(JSON.stringify(profitData, undefined, 2));
           }
       });
   });
