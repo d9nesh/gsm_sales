@@ -216,7 +216,7 @@ $(document).ready(function() {
                 //Better to construct options first and then pass it as a parameter
                 var options1 = {
                     title: {
-                        text: "GSM SALES: Daily Chart Sales"
+                        text: "GSM : Daily Chart Sales"
                     },
                     animationEnabled: true,
                     axisY:{
@@ -235,7 +235,7 @@ $(document).ready(function() {
 
                 var profitOptions = {
                     title: {
-                        text: "GSM SALES: Daily Chart Profit"
+                        text: "GSM : Daily Chart Profit"
                     },
                     animationEnabled: true,
                     axisY:{
