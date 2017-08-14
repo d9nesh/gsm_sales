@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+
+  <title>GSM Sales</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -16,32 +17,6 @@
   <link rel="stylesheet" href="css/custom.css">
   <script type="text/javascript" src="js/custom.js"></script>
 
-  <style>
-    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-    .row.content {height: 1500px}
-
-    /* Set gray background color and 100% height */
-    .sidenav {
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height: auto;}
-    }
-  </style>
 </head>
 <body>
 {{> header}}
@@ -74,15 +49,12 @@
         <button type="button" id="genrate-chart" class="btn btn-info" data-toggle="modal" data-target="#myModal">Generate Chart</button>
       </form>
     </div>
-    <div class="col-sm-12">
-      <label for="check" class="form-group-font">All Checked/Unchecked :</label>
-      <input type="checkbox" name="check" id="check" class="check" checked>
-    </div>
+    
     <div class="col-sm-12">
       <table id="example" class="display" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                  <th>Checked</th>
+                  <th><input type="checkbox" name="check" id="check" class="check" checked></th>
                   <th>Product_Category</th>
                   <th>Asin</th>
                   <th>Title</th>
@@ -109,11 +81,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h2 class="modal-title">Daily Chart</h2>
+          <h2 class="modal-title">Daily Sales & Profit Chart</h2>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="height:330px;">
+
           <div id="ajax_loader" style="text-align: center;height: 300px; width: 100%;display: none;">
-            <img src="images/ajax_loader.gif" />
+            <h4>Loading...</h4>
+            <img src="images/ajax_loader.gif" alt="Loading Chart..." height="250px" width="320px"/>
           </div>
           <div class="col-sm-12">
             <div class="col-sm-6">
