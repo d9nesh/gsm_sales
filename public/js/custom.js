@@ -145,16 +145,18 @@ $(document).ready(function() {
               });
            }
             chartData[count] = {
-                type: "line",
-                xValueType : "number",
-                name: sale_date,
+              type: "line",
+              markerType: "none",
+              showInLegend: true,
+              legendText: data[i].printDate,
                 dataPoints : datapoints[sale_date]
             }
 
             profitData[count] = {
-                type: "line",
-                xValueType : "number",
-                name: sale_date,
+              type: "line",
+              markerType: "none",
+              showInLegend: true,
+              legendText: data[i].printDate,
                 dataPoints : profitdatapoints[sale_date]
             }
           }else{
@@ -174,8 +176,9 @@ $(document).ready(function() {
 
             chartData[temp] = {
               type: "line",
-              xValueType : "number",
-              name: sale_date,
+              markerType: "none",
+              showInLegend: true,
+              legendText: data[i].printDate,
               dataPoints : [{
                 x:parseInt(data[i].sale_hour),
                 y:data[i].quantity
@@ -184,8 +187,9 @@ $(document).ready(function() {
 
             profitData[temp] = {
               type: "line",
-              xValueType : "number",
-              name: sale_date,
+              markerType: "none",
+              showInLegend: true,
+              legendText: data[i].printDate,
               dataPoints : [{
                 x:parseInt(data[i].sale_hour),
                 y:data[i].profit
