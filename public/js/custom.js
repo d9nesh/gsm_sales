@@ -204,10 +204,15 @@ $(document).ready(function() {
                   },
                   animationEnabled: true,
                   axisY:{
-                    title: "Sales"
+                    title: "sales"
                   },
                   axisX:{
-                    title: "Time"
+                    title: "time",
+                    gridThickness: 1,
+                    interval: 6,
+                    labelAngle: 0,
+                    minimum: 0,
+                    maximum: 24
                   },
                   data: chartData,
             };
@@ -218,10 +223,15 @@ $(document).ready(function() {
                     },
                     animationEnabled: true,
                     axisY:{
-                      title: "Profit"
+                      title: "profit"
                     },
                     axisX:{
-                      title: "Time"
+                      title: "time",
+                      gridThickness: 1,
+                      interval: 6,
+                      labelAngle: 0,
+                      minimum: 0,
+                      maximum: 24
                     },
                     data: profitData,
         };
