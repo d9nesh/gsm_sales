@@ -33,6 +33,7 @@ var chartData = (data) => {
         quantity : data[i].quantity,
         sale_date: sale_date,
         sale_hour: data[i].hours,
+        sale_minutes : data[i].minutes,
         profit:  projectedprofit,
         printDate: print_date
       }

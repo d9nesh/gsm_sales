@@ -119,6 +119,8 @@ $(document).ready(function() {
                       var saleQuantity = 0;
                       var profitQuantity = 0;
                       var profitdata = 0;
+                      var data_x_points = data[i].sale_hour + "." + data[i].sale_minutes;
+                      console.log("data x points: " + data_x_points);
 
                       var datalength = datapoints[sale_date].length;
                       if(datalength != undefined){
@@ -128,7 +130,8 @@ $(document).ready(function() {
                       }
 
                       for (var point=0 ; point < datapoints[sale_date].length; point++){
-                          if(datapoints[sale_date][point].x == data[i].sale_hour){
+                          if(datapoints[sale_date][point].x == data_x_points){
+                            console.log("Data points x: " + datapoints[sale_date][point].x + " = " + data[i].sale_hour);
                                 pointupdate = false;
                                 datapoints[sale_date][point].y = saleQuantity + parseInt(data[i].quantity);
                                 profitdatapoints[sale_date][point].y = profitQuantity + parseInt(data[i].profit);
@@ -140,13 +143,13 @@ $(document).ready(function() {
                             profitdata = parseInt(data[i].profit) + profitQuantity;
 
                             datapoints[sale_date].push({
-                                x:parseInt(data[i].sale_hour),
-                                y:parseInt(data[i].quantity) + parseInt(saleQuantity)
+                                x:parseFloat(data_x_points),
+                                y:parseFloat(data[i].quantity) + parseInt(saleQuantity)
                             });
 
                             profitdatapoints[sale_date].push({
-                                x:parseInt(data[i].sale_hour),
-                                y:parseInt(data[i].profit) + profitQuantity
+                                x:parseFloat(data_x_points),
+                                y:parseFloat(data[i].profit) + profitQuantity
                             });
                       }
 
@@ -169,14 +172,17 @@ $(document).ready(function() {
 
                       dateExist[sale_date] = temp;
                       datapoints[sale_date] = [];
+                      data_x_points = data[i].sale_hour + "." + data[i].sale_minutes;
+
+                      console.log("data x points: " + data_x_points);
                       datapoints[sale_date].push({
-                          x:parseInt(data[i].sale_hour),
+                          x:parseFloat(data_x_points),
                           y:data[i].quantity
                       });
 
                       profitdatapoints[sale_date] = [];
                       profitdatapoints[sale_date].push({
-                          x:parseInt(data[i].sale_hour),
+                          x:parseFloat(data_x_points),
                           y:data[i].profit
                       });
 
@@ -186,9 +192,9 @@ $(document).ready(function() {
                           showInLegend: true,
                           legendText: data[i].printDate,
                           dataPoints : [{
-                              x:parseInt(data[i].sale_hour),
+                              x:parseFloat(data_x_points),
                               y:data[i].quantity
-                              }]
+                          }]
                       }
 
                       profitData[temp] = {
@@ -197,7 +203,7 @@ $(document).ready(function() {
                           showInLegend: true,
                           legendText: data[i].printDate,
                           dataPoints : [{
-                              x:parseInt(data[i].sale_hour),
+                              x:parseFloat(data_x_points),
                               y:data[i].profit
                           }]
                       }
