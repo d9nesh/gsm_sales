@@ -2,6 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const db = require('./model/db');
+const searchModel = require('./model/searchModel');
 const parseChartData = require('./controller/parseChartData');
 
 const app = express();
@@ -78,6 +79,20 @@ app.get('/api/chartdata', (req, res) => {
           data:chartData
         });
       }
+  });
+});
+
+app.get('/search', (req, res) => {
+  var searchQuery = `CALL select_pl_searchterms()`;
+  searchModel.getData(searchQuery, (error, results) => {
+    if (error) {
+      return console.error(error);
+    }
+    else {
+      res.render('search', {
+        dataObj : results
+      });
+    }
   });
 });
 

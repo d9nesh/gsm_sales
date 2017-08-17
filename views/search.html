@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>GSM Sales</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.2.2/css/fixedColumns.dataTables.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
+
+  <link rel="stylesheet" href="css/search_custom.css">
+  <script type="text/javascript" src="js/search_custom.js"></script>
+</head>
+<body>
+{{> header}}
+<div class="container">
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-12 text-center">
+      <h1>Search Terms</h1>
+    </div>
+    <div class="col-sm-12">
+      <table id="example" class="display" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>Search Term</th>
+                  <th>Average Title Score</th>
+                  <th>Max Title Score</th>
+                  <th>Ideal Max Title Score</th>
+                  <th>Ideal Max Title Score Percent</th>
+                  <th>Min Title Score</th>
+                  <th>Average Title Score 4 to 6</th>
+                  <th>Average Title Score 4 to 6 Percent</th>
+                  <th>Min Price Top 5</th>
+                  <th>Average Sales Top 5</th>
+                  <th>Monthly Profits</th>
+                  <th>Sourcing Price</th>
+                  <th>Sourcing Price Median Price</th>
+                  <th>Median Price</th>
+                  <th>FBA Fees</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each dataObj}}
+                 <tr class="{{this.Product_Category}}">
+                   <td>{{this.searchterm}}</td>
+                   <td>{{this.avgtitlescore}}</td>
+                   <td>{{this.maxtitlescore}}</td>
+                   <td>{{this.idealmaxtitlescore}}</td>
+                   <td>{{this.idealmaxtitlescorepercent}}</td>
+                   <td>{{this.mintitlescore}}</td>
+                   <td>{{this.avgtitlescore4to6}}</td>
+                   <td>{{this.avgtitlescore4to6percent}}</td>
+                   <td>{{this.minpricetop5}}</td>
+                   <td>{{this.avgsalestop5}}</td>
+                   <td>{{this.estimatedmonthlyprofits}}</td>
+                   <td>{{this.estimatedsourcingprice}}</td>
+                   <td>{{this.estimatedsourcingpricemedianprice}}</td>
+                   <td>{{this.medianprice}}</td>
+                   <td>{{this.fbafees}}</td>
+                   <td>
+                     <div class="btn-group btn-group-sm btn-group-justified" style="width:150px">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-primary">Details</button>
+                      </div>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-primary">Purchase</button>
+                      </div>
+                     </div>
+                   </td>
+                 </tr>
+                {{/each}}
+              </tbody>
+          </table>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
