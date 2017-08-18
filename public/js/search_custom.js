@@ -1,26 +1,27 @@
 $(document).ready(function() {
     var table = $('#example').DataTable( {
-        scrollY       : 400,
+        scrollY       : 300,
         scrollX       : true,
         scrollCollapse: true,
         paging        : false,
         fixedColumns  : true,
         columnDefs    : [
           { "width": "100px", "targets": 0 },
-          { "width": "100px", "targets": 1 },
-          { "width": "100px", "targets": 2 },
-          { "width": "100px", "targets": 3 },
-          { "width": "100px", "targets": 4 },
-          { "width": "100px", "targets": 5 },
-          { "width": "100px", "targets": 6 },
-          { "width": "150px", "targets": 7 },
-          { "width": "100px", "targets": 8 },
-          { "width": "100px", "targets": 9 },
-          { "width": "100px", "targets": 10 },
-          { "width": "100px", "targets": 11 },
-          { "width": "100px", "targets": 12 },
-          { "width": "100px", "targets": 13 },
-          { "width": "100px", "targets": 14 }
+          { "width": "50px", "targets": 1 },
+          { "width": "50px", "targets": 2 },
+          { "width": "60px", "targets": 3 },
+          { "width": "75px", "targets": 4 },
+          { "width": "50px", "targets": 5 },
+          { "width": "75px", "targets": 6 },
+          { "width": "85px", "targets": 7 },
+          { "width": "50px", "targets": 8 },
+          { "width": "50px", "targets": 9 },
+          { "width": "50px", "targets": 10 },
+          { "width": "50px", "targets": 11 },
+          { "width": "90px", "targets": 12 },
+          { "width": "50px", "targets": 13 },
+          { "width": "50px", "targets": 14 },
+          { "width": "110px", "targets": 15 }
         ]
     } );
 } );

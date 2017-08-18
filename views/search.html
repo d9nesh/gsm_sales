@@ -26,14 +26,15 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-12 text-center">
-      <h1>Search Terms</h1>
+      <h3>Search Terms</h3>
+      <hr>
     </div>
     <div class="col-sm-12">
       <form class="form-inline" action="" method="">
         <div class="form-group">
-          <input type="search" class="form-control" id="add-search-term" name="search-term" placeholder="Search Term">
+          <input type="search" class="form-control input-sm" id="add-search-term" name="search-term" placeholder="Add Search Term">
         </div>
-        <button type="button" id="addSearch" class="btn btn-info">Add Search Term</button>
+        <button type="button" id="addSearch" class="btn btn-primary btn-sm">Add Search Term</button>
       </form>
     </div>
     <div class="col-sm-12">
@@ -77,14 +78,12 @@
                    <td>{{this.medianprice}}</td>
                    <td>{{this.fbafees}}</td>
                    <td>
-                     <div class="btn-group btn-group-sm btn-group-justified" style="width:150px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-primary">Details</button>
-                      </div>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-primary">Purchase</button>
-                      </div>
-                     </div>
+                     <form class="form-inline" action="/searchDetails" method="get">
+                      <div class="form-group">
+                      <input type="hidden" class="asin-values" name="search_term_id" value="{{this.id}}" />
+                      <button type="submit" class="btn btn-primary btn-xs">Details</button>
+                      <button type="button" class="btn btn-primary btn-xs">Purchase</button>
+                     </form>
                    </td>
                  </tr>
                 {{/each}}

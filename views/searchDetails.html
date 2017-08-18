@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>GSM Sales</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.2.2/css/fixedColumns.dataTables.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
+
+  <link rel="stylesheet" href="css/search_details_custom.css">
+  <script type="text/javascript" src="js/search_details_custom.js"></script>
+</head>
+<body>
+{{> header}}
+<div class="container">
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-12 text-center">
+      <h3>Search Term Details</h3>
+      <hr>
+    </div>
+    <div class="col-sm-12">
+      <a href="/search" class="btn btn-primary btn-sm" role="button">Return to Search Terms</a>
+    </div>
+    <div class="col-sm-12" style="display: inline-flex">
+      <label for="asin">Search Term : </label><p id="search-label">{{dataObj.searchterm}}</p>
+    </div>
+    <div class="col-sm-12 text-center">
+      <div class="col-sm-4">
+        <h5>Word Scores</h5>
+        <hr>
+        <table id="word-scores" class="display" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th>Word Rank</th>
+                    <th>Word</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>{{dataObj.word1}}</td>
+                    <td>{{dataObj.word1score}}</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>{{dataObj.word2}}</td>
+                    <td>{{dataObj.word2score}}</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>{{dataObj.word3}}</td>
+                    <td>{{dataObj.word3score}}</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>{{dataObj.word4}}</td>
+                    <td>{{dataObj.word5score}}</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>{{dataObj.word5}}</td>
+                    <td>{{dataObj.word5score}}</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>{{dataObj.word6}}</td>
+                    <td>{{dataObj.word6score}}</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>{{dataObj.word7}}</td>
+                    <td>{{dataObj.word7score}}</td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>{{dataObj.word8}}</td>
+                    <td>{{dataObj.word8score}}</td>
+                  </tr>
+                  <tr>
+                    <td>9</td>
+                    <td>{{dataObj.word9}}</td>
+                    <td>{{dataObj.word9score}}</td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td>{{dataObj.word10}}</td>
+                    <td>{{dataObj.word10score}}</td>
+                  </tr>
+                  <tr>
+                    <td>11</td>
+                    <td>{{dataObj.word11}}</td>
+                    <td>{{dataObj.word11score}}</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>{{dataObj.word12}}</td>
+                    <td>{{dataObj.word12score}}</td>
+                  </tr>
+                  <tr>
+                    <td>13</td>
+                    <td>{{dataObj.word13}}</td>
+                    <td>{{dataObj.word13score}}</td>
+                  </tr>
+                  <tr>
+                    <td>14</td>
+                    <td>{{dataObj.word14}}</td>
+                    <td>{{dataObj.word14score}}</td>
+                  </tr>
+                  <tr>
+                    <td>15</td>
+                    <td>{{dataObj.word15}}</td>
+                    <td>{{dataObj.word15score}}</td>
+                  </tr>
+                  <tr>
+                    <td>16</td>
+                    <td>{{dataObj.word16}}</td>
+                    <td>{{dataObj.word16score}}</td>
+                  </tr>
+                  <tr>
+                    <td>17</td>
+                    <td>{{dataObj.word17}}</td>
+                    <td>{{dataObj.word17score}}</td>
+                  </tr>
+                  <tr>
+                    <td>18</td>
+                    <td>{{dataObj.word18}}</td>
+                    <td>{{dataObj.word18score}}</td>
+                  </tr>
+                  <tr>
+                    <td>19</td>
+                    <td>{{dataObj.word19}}</td>
+                    <td>{{dataObj.word19score}}</td>
+                  </tr>
+                  <tr>
+                    <td>20</td>
+                    <td>{{dataObj.word20}}</td>
+                    <td>{{dataObj.word20score}}</td>
+                  </tr>
+                  <tr>
+                    <td>21</td>
+                    <td>{{dataObj.word21}}</td>
+                    <td>{{dataObj.word21score}}</td>
+                  </tr>
+                  <tr>
+                    <td>22</td>
+                    <td>{{dataObj.word22}}</td>
+                    <td>{{dataObj.word22score}}</td>
+                  </tr>
+                  <tr>
+                    <td>23</td>
+                    <td>{{dataObj.word23}}</td>
+                    <td>{{dataObj.word23score}}</td>
+                  </tr>
+                  <tr>
+                    <td>24</td>
+                    <td>{{dataObj.word24}}</td>
+                    <td>{{dataObj.word24score}}</td>
+                  </tr>
+                  <tr>
+                    <td>25</td>
+                    <td>{{dataObj.word25}}</td>
+                    <td>{{dataObj.word25score}}</td>
+                  </tr>
+                </tbody>
+            </table>
+      </div>
+      <div class="col-sm-8">
+        <h5>ASIN Details</h5>
+        <hr>
+        <table id="asin-details" class="display" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th>ASIN</th>
+                    <th>Title Score</th>
+                    <th>Price</th>
+                    <th>Monthly Sales</th>
+                    <th>Monthly Profit</th>
+                    <th>Sourcing Price</th>
+                    <th>FBA Fees</th>
+                    <th>ASIN Title Search Term Percentage</th>
+                    <th>ASIN Title Search Term Point Percent</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#dataObj}}
+                  <tr>
+                    <td><a href="https://www.amazon.com/dp/{{asin1}}" class="" role="">{{checkValue asin1}}</a></td>
+                    <td>{{checkValue asin1titlescore}}</td>
+                    <td>{{checkValue asin1price}}</td>
+                    <td>{{checkValue asin1salesestimate}}</td>
+                    <td>{{checkValue asin1profitestimate}}</td>
+                    <td>{{checkValue asin1sourcingprice}}</td>
+                    <td>{{checkValue asin1fbafees}}</td>
+                    <td>{{checkValue asin1titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin1titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin2}}" class="" role="">{{checkValue asin2}}</a></td>
+                    <td>{{checkValue asin2titlescore}}</td>
+                    <td>{{checkValue asin2price}}</td>
+                    <td>{{checkValue asin2salesestimate}}</td>
+                    <td>{{checkValue asin2profitestimate}}</td>
+                    <td>{{checkValue asin2sourcingprice}}</td>
+                    <td>{{checkValue asin2fbafees}}</td>
+                    <td>{{checkValue asin2titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin2titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin3}}" class="" role="">{{checkValue asin3}}</a></td>
+                    <td>{{checkValue asin3titlescore}}</td>
+                    <td>{{checkValue asin3price}}</td>
+                    <td>{{checkValue asin3salesestimate}}</td>
+                    <td>{{checkValue asin3profitestimate}}</td>
+                    <td>{{checkValue asin3sourcingprice}}</td>
+                    <td>{{checkValue asin3fbafees}}</td>
+                    <td>{{checkValue asin3titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin3titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin4}}" class="" role="">{{checkValue asin4}}</a></td>
+                    <td>{{checkValue asin4titlescore}}</td>
+                    <td>{{checkValue asin4price}}</td>
+                    <td>{{checkValue asin4salesestimate}}</td>
+                    <td>{{checkValue asin4profitestimate}}</td>
+                    <td>{{checkValue asin4sourcingprice}}</td>
+                    <td>{{checkValue asin4fbafees}}</td>
+                    <td>{{checkValue asin4titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin4titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin5}}" class="" role="">{{checkValue asin5}}</a></td>
+                    <td>{{checkValue asin5titlescore}}</td>
+                    <td>{{checkValue asin5price}}</td>
+                    <td>{{checkValue asin5salesestimate}}</td>
+                    <td>{{checkValue asin5profitestimate}}</td>
+                    <td>{{checkValue asin5sourcingprice}}</td>
+                    <td>{{checkValue asin5fbafees}}</td>
+                    <td>{{checkValue asin5titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin5titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin6}}" class="" role="">{{checkValue asin6}}</a></td>
+                    <td>{{checkValue asin6titlescore}}</td>
+                    <td>{{checkValue asin6price}}</td>
+                    <td>{{checkValue asin6salesestimate}}</td>
+                    <td>{{checkValue asin6profitestimate}}</td>
+                    <td>{{checkValue asin6sourcingprice}}</td>
+                    <td>{{checkValue asin6fbafees}}</td>
+                    <td>{{checkValue asin6titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin6titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin7}}" class="" role="">{{checkValue asin7}}</a></td>
+                    <td>{{checkValue asin7titlescore}}</td>
+                    <td>{{checkValue asin7price}}</td>
+                    <td>{{checkValue asin7salesestimate}}</td>
+                    <td>{{checkValue asin7profitestimate}}</td>
+                    <td>{{checkValue asin7sourcingprice}}</td>
+                    <td>{{checkValue asin7fbafees}}</td>
+                    <td>{{checkValue asin7titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin7titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin8}}" class="" role="">{{checkValue asin8}}</a></td>
+                    <td>{{checkValue asin8titlescore}}</td>
+                    <td>{{checkValue asin8price}}</td>
+                    <td>{{checkValue asin8salesestimate}}</td>
+                    <td>{{checkValue asin8profitestimate}}</td>
+                    <td>{{checkValue asin8sourcingprice}}</td>
+                    <td>{{checkValue asin8fbafees}}</td>
+                    <td>{{checkValue asin8titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin8titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin9}}" class="" role="">{{checkValue asin9}}</a></td>
+                    <td>{{checkValue asin9titlescore}}</td>
+                    <td>{{checkValue asin9price}}</td>
+                    <td>{{checkValue asin9salesestimate}}</td>
+                    <td>{{checkValue asin9profitestimate}}</td>
+                    <td>{{checkValue asin9sourcingprice}}</td>
+                    <td>{{checkValue asin9fbafees}}</td>
+                    <td>{{checkValue asin9titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin9titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin10}}" class="" role="">{{checkValue asin10}}</a></td>
+                    <td>{{checkValue asin10titlescore}}</td>
+                    <td>{{checkValue asin10price}}</td>
+                    <td>{{checkValue asin10salesestimate}}</td>
+                    <td>{{checkValue asin10profitestimate}}</td>
+                    <td>{{checkValue asin10sourcingprice}}</td>
+                    <td>{{checkValue asin10fbafees}}</td>
+                    <td>{{checkValue asin10titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin10titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin11}}" class="" role="">{{checkValue asin11}}</a></td>
+                    <td>{{checkValue asin11titlescore}}</td>
+                    <td>{{checkValue asin11price}}</td>
+                    <td>{{checkValue asin11salesestimate}}</td>
+                    <td>{{checkValue asin11profitestimate}}</td>
+                    <td>{{checkValue asin11sourcingprice}}</td>
+                    <td>{{checkValue asin11fbafees}}</td>
+                    <td>{{checkValue asin11titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin11titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin12}}" class="" role="">{{checkValue asin12}}</a></td>
+                    <td>{{checkValue asin12titlescore}}</td>
+                    <td>{{checkValue asin12price}}</td>
+                    <td>{{checkValue asin12salesestimate}}</td>
+                    <td>{{checkValue asin12profitestimate}}</td>
+                    <td>{{checkValue asin12sourcingprice}}</td>
+                    <td>{{checkValue asin12fbafees}}</td>
+                    <td>{{checkValue asin12titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin12titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin13}}" class="" role="">{{checkValue asin13}}</a></td>
+                    <td>{{checkValue asin13titlescore}}</td>
+                    <td>{{checkValue asin13price}}</td>
+                    <td>{{checkValue asin13salesestimate}}</td>
+                    <td>{{checkValue asin13profitestimate}}</td>
+                    <td>{{checkValue asin13sourcingprice}}</td>
+                    <td>{{checkValue asin13fbafees}}</td>
+                    <td>{{checkValue asin13titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin13titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin14}}" class="" role="">{{checkValue asin14}}</a></td>
+                    <td>{{checkValue asin14titlescore}}</td>
+                    <td>{{checkValue asin14price}}</td>
+                    <td>{{checkValue asin14salesestimate}}</td>
+                    <td>{{checkValue asin14profitestimate}}</td>
+                    <td>{{checkValue asin14sourcingprice}}</td>
+                    <td>{{checkValue asin14fbafees}}</td>
+                    <td>{{checkValue asin14titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin14titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  <tr >
+                    <td><a href="https://www.amazon.com/dp/{{asin15}}" class="" role="">{{checkValue asin15}}</a></td>
+                    <td>{{checkValue asin15titlescore}}</td>
+                    <td>{{checkValue asin15price}}</td>
+                    <td>{{checkValue asin15salesestimate}}</td>
+                    <td>{{checkValue asin15profitestimate}}</td>
+                    <td>{{checkValue asin15sourcingprice}}</td>
+                    <td>{{checkValue asin15fbafees}}</td>
+                    <td>{{checkValue asin15titlesearchtermpercentage}}</td>
+                    <td>{{checkValue asin15titlesearchtermpointspercent}}</td>
+                    <td><button type="button" class="btn btn-info btn-xs">Listing Details</button></td>
+                  </tr>
+                  {{/dataObj}}
+                </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

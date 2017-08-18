@@ -96,5 +96,34 @@ app.get('/search', (req, res) => {
   });
 });
 
+app.get('/searchDetails', (req, res) => {
+  var objId;
+  var searchTermId = req.query.search_term_id;
+  var searchQuery = `CALL select_pl_searchterms()`;
+  searchModel.getData(searchQuery, (error, results) => {
+    if (error) {
+      return console.error(error);
+    }
+    else {
+      for (var i = 0; i < results.length; i++) {
+        if (results[i].id == searchTermId) {
+          objId = i;
+        }
+      }
+      res.render('searchDetails', {
+        dataObj : results[objId]
+      });
+    }
+  });
+});
+
+hbs.registerHelper('checkValue', (data) => {
+  if (data == null) {
+    return '-';
+  }else {
+    return data;
+  }
+});
+
 app.listen(3000);
 console.log('Running expressjs on http://127.0.0.1:3000');
