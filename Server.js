@@ -98,6 +98,8 @@ app.get('/search', (req, res) => {
 
 app.get('/searchDetails', (req, res) => {
   var objId;
+  var wordScoresData = [];
+  var asinDetailsData = [];
   var searchTermId = req.query.search_term_id;
   var searchQuery = `CALL select_pl_searchterms()`;
   searchModel.getData(searchQuery, (error, results) => {
@@ -110,8 +112,19 @@ app.get('/searchDetails', (req, res) => {
           objId = i;
         }
       }
+
+      for (var i = 1; i <= 15; i++) {
+        asinDetailsData[i] = results[objId];
+      }
+
+      for (var i = 1; i <= 25; i++) {
+        wordScoresData[i] = results[objId];
+      }
+
       res.render('searchDetails', {
-        dataObj : results[objId]
+        // dataObj       : results[objId],
+        wordScores    : wordScoresData,
+        asinDetails   : asinDetailsData
       });
     }
   });
@@ -122,6 +135,59 @@ hbs.registerHelper('checkValue', (data) => {
     return '-';
   }else {
     return data;
+  }
+});
+
+hbs.registerHelper('getWordScores', (data, index, whatData) => {
+  var key;
+  if (whatData === 'word') {
+    key = 'word'+index;
+    return data[key];
+  }
+  else if (whatData === 'score') {
+    key = `word${index}score`;
+    return data[key];
+  }
+
+});
+
+hbs.registerHelper('getAsinDetails', (data, index, whatData) => {
+  var key;
+  if (whatData === 'asin') {
+    key = 'asin'+index;
+    return data[key];
+  }
+  else if (whatData === 'titlescore') {
+    key = `asin${index}titlescore`;
+    return data[key];
+  }
+  else if (whatData === 'price') {
+    key = `asin${index}price`;
+    return data[key];
+  }
+  else if (whatData === 'salesestimate') {
+    key = `asin${index}salesestimate`;
+    return data[key];
+  }
+  else if (whatData === 'profitestimate') {
+    key = `asin${index}profitestimate`;
+    return data[key];
+  }
+  else if (whatData === 'sourcingprice') {
+    key = `asin${index}sourcingprice`;
+    return data[key];
+  }
+  else if (whatData === 'fbafees') {
+    key = `asin${index}fbafees`;
+    return data[key];
+  }
+  else if (whatData === 'titlesearchtermpercentage') {
+    key = `asin${index}titlesearchtermpercentage`;
+    return data[key];
+  }
+  else if (whatData === 'titlesearchtermpointspercent') {
+    key = `asin${index}titlesearchtermpointspercent`;
+    return data[key];
   }
 });
 
