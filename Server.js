@@ -108,6 +108,23 @@ app.post('/searchDetails', (req, res) => {
   });
 });
 
+app.post('/api/search/insert', (req, res) => {
+  var searchterm = req.body.searchterm;
+  var ip_address = req.body.ip_address;
+  var searchQuery = `CALL insert_pl_searchterms('${searchterm}',' ${ip_address}')`;
+  searchModel.getData(searchQuery, (error, results) => {
+    if (error) {
+      return console.error(error);
+    }
+    else {
+      res.send({
+        searchterm,
+        ip_address
+      });
+    }
+  });
+});
+
 hbs.registerHelper('checkValue', (data) => {
   if (data == null) {
     return '-';

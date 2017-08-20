@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     var table = $('#example').DataTable( {
         scrollY       : 300,
         scrollX       : true,
@@ -24,4 +25,15 @@ $(document).ready(function() {
           { "width": "110px", "targets": 15 }
         ]
     } );
+
+    $('#addSearch').click(() => {
+      var requestData = {
+        searchterm : $('#add-search-term').val(),
+        ip_address : '127.0.0.1'
+      };
+      $.post("/api/search/insert", requestData, function (data) {
+        alert(`Search Term "${data.searchterm}" is added.`);
+      });
+    });
+
 } );
