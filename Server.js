@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const db = require('./model/db');
 const searchModel = require('./model/searchModel');
 const parseChartData = require('./controller/parseChartData');
+const searchController = require('./controller/searchController');
 
 const app = express();
 
@@ -33,20 +34,12 @@ app.post('/chart', (req, res) => {
   let chart = parseInt(req.body.chart);
   let asinValues = req.body.asin_values;
   let asin = req.body.asin;
-
-  // console.log('Input Values : ' + asin);
-  // console.log('Checkbox Values : ' + asinValues);
-  // console.log('Checkbox length : ' + asinValues.split(",").length);
-
   var profitChartQuery;
   if (asin !== ""){
     profitChartQuery = `CALL select_profit_chart_data("${asin}",${chart})`;
   }else {
     profitChartQuery = `CALL select_profit_chart_data("${asinValues}",${chart})`;
   }
-
-  // console.log('Query => ' + profitChartQuery);
-
   db.getData(profitChartQuery, (error, results) => {
     if (error) {
         return console.error(error);
@@ -73,9 +66,7 @@ app.get('/api/chartdata', (req, res) => {
       }
       else {
         var chartData = parseChartData.chartData(results);
-        // console.log(JSON.stringify(chartData, undefined, 2));
-        // console.log(chartData.length);
-        res.send({
+          res.send({
           data:chartData
         });
       }
@@ -97,9 +88,6 @@ app.get('/search', (req, res) => {
 });
 
 app.post('/searchDetails', (req, res) => {
-  var objId;
-  var wordScoresData = [];
-  var asinDetailsData = [];
   var searchTermId = req.body.search_term_id;
   var searchQuery = `CALL select_pl_searchterms()`;
   searchModel.getData(searchQuery, (error, results) => {
@@ -107,24 +95,14 @@ app.post('/searchDetails', (req, res) => {
       return console.error(error);
     }
     else {
-      for (var i = 0; i < results.length; i++) {
-        if (results[i].id == searchTermId) {
-          objId = i;
-        }
-      }
-
-      for (var i = 1; i <= 15; i++) {
-        asinDetailsData[i] = results[objId];
-      }
-
-      for (var i = 1; i <= 25; i++) {
-        wordScoresData[i] = results[objId];
-      }
+      var dataObjBysearchTermId = searchController.getdataObjBysearchTermId(searchTermId, results);
+      var asinDetailsObj = searchController.getAsinDetailsObj(searchTermId, results);
+      var wordScoresObj = searchController.getWordScoresObj(searchTermId, results);
 
       res.render('searchDetails', {
-        dataObj       : results[objId],
-        wordScores    : wordScoresData,
-        asinDetails   : asinDetailsData
+        dataObj       : dataObjBysearchTermId,
+        wordScores    : wordScoresObj,
+        asinDetails   : asinDetailsObj
       });
     }
   });
@@ -139,123 +117,11 @@ hbs.registerHelper('checkValue', (data) => {
 });
 
 hbs.registerHelper('getWordScores', (data, index, whatData) => {
-  var key;
-
-  if (whatData === 'word') {
-    key = 'word'+index;
-    if (data[key] === null) {
-      return '-';
-    }
-    else{
-      return data[key];
-    }
-  }
-
-  else if (whatData === 'score') {
-    key = `word${index}score`;
-    if (data[key] === null) {
-      return '-';
-    }
-    else{
-      return data[key];
-    }
-  }
-
+  return searchController.getWordScores(data, index, whatData);
 });
 
 hbs.registerHelper('getAsinDetails', (data, index, whatData) => {
-  var key;
-
-  if (whatData === 'asin') {
-    key = 'asin'+index;
-    if (data[key] === null) {
-      return '-';
-    }
-    else{
-      return data[key];
-    }
-  }
-
-  else if (whatData === 'titlescore') {
-    key = `asin${index}titlescore`;
-    if (data[key] === null) {
-      return '-';
-    }
-    else{
-      return data[key];
-    }
-  }
-
-  else if (whatData === 'price') {
-    key = `asin${index}price`;
-    if (data[key] === null) {
-      return '-';
-    }
-    else{
-      return data[key];
-    }
-  }
-
-  else if (whatData === 'salesestimate') {
-    key = `asin${index}salesestimate`;
-    if (data[key] === null) {
-      return '-';
-    }
-    else{
-      return data[key];
-    }
-  }
-
-  else if (whatData === 'profitestimate') {
-    key = `asin${index}profitestimate`;
-    if (data[key] === null) {
-      return '-';
-    }
-    else{
-      return data[key];
-    }
-  }
-
-  else if (whatData === 'sourcingprice') {
-    key = `asin${index}sourcingprice`;
-    if (data[key] === null) {
-      return '-';
-    }
-    else{
-      return data[key];
-    }
-  }
-
-  else if (whatData === 'fbafees') {
-    key = `asin${index}fbafees`;
-    if (data[key] === null) {
-      return '-';
-    }
-    else{
-      return data[key];
-    }
-  }
-
-  else if (whatData === 'titlesearchtermpercentage') {
-    key = `asin${index}titlesearchtermpercentage`;
-    if (data[key] === null) {
-      return '-';
-    }
-    else{
-      return data[key];
-    }
-  }
-
-  else if (whatData === 'titlesearchtermpointspercent') {
-    key = `asin${index}titlesearchtermpointspercent`;
-    if (data[key] === null) {
-      return '-';
-    }
-    else{
-      return data[key];
-    }
-  }
-
+  return searchController.getAsinDetails(data, index, whatData);
 });
 
 app.listen(3000);
