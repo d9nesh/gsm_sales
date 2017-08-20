@@ -36,7 +36,7 @@
       <label for="search-term" class="search-term-label">Search Term : </label><label id="search-term-label" for="search-term" class="search-term-label">{{dataObj.searchterm}}</label>
     </div>
     <div class="col-sm-12 text-center">
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <h5>Word Scores</h5>
         <hr>
         <table id="word-scores" class="display" cellspacing="0" width="100%">
@@ -58,7 +58,7 @@
                 </tbody>
             </table>
       </div>
-      <div class="col-sm-8">
+      <div class="col-sm-9">
         <h5>ASIN Details</h5>
         <hr>
         <table id="asin-details" class="display" cellspacing="0" width="100%">
@@ -81,13 +81,13 @@
                   <tr>
                     <td><a href="https://www.amazon.com/dp/{{getAsinDetails this @index 'asin'}}" class="asin-label-text" role="">{{getAsinDetails this @index 'asin'}}</a></td>
                     <td>{{getAsinDetails this @index 'titlescore'}}</td>
-                    <td>{{getAsinDetails this @index 'price'}}</td>
+                    <td>$ {{getAsinDetails this @index 'price'}}</td>
                     <td>{{getAsinDetails this @index 'salesestimate'}}</td>
-                    <td>{{getAsinDetails this @index 'profitestimate'}}</td>
-                    <td>{{getAsinDetails this @index 'sourcingprice'}}</td>
-                    <td>{{getAsinDetails this @index 'fbafees'}}</td>
-                    <td>{{getAsinDetails this @index 'titlesearchtermpercentage'}}</td>
-                    <td>{{getAsinDetails this @index 'titlesearchtermpointspercent'}}</td>
+                    <td>$ {{getAsinDetails this @index 'profitestimate'}}</td>
+                    <td>$ {{getAsinDetails this @index 'sourcingprice'}}</td>
+                    <td>$ {{getAsinDetails this @index 'fbafees'}}</td>
+                    <td>{{getAsinDetails this @index 'titlesearchtermpercentage'}} %</td>
+                    <td>{{getAsinDetails this @index 'titlesearchtermpointspercent'}} %</td>
                     <td><button type="button" class="listing-detail btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">Listing Details</button></td>
                   </tr>
                   {{/each}}

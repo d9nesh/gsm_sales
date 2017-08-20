@@ -114,6 +114,7 @@ app.post('/api/search/insert', (req, res) => {
   var searchQuery = `CALL insert_pl_searchterms('${searchterm}',' ${ip_address}')`;
   searchModel.getData(searchQuery, (error, results) => {
     if (error) {
+      res.send(error);
       return console.error(error);
     }
     else {

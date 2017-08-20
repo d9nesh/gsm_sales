@@ -17,16 +17,16 @@ $(document).ready(function() {
         fixedColumns  : true,
         order         : [[ 0, "desc" ]],
         columnDefs    : [
-          { "width": "100px", "targets": 0 },
-          { "width": "40px", "targets": 1 },
-          { "width": "35px", "targets": 2 },
-          { "width": "50px", "targets": 3 },
-          { "width": "50px", "targets": 4 },
-          { "width": "50px", "targets": 5 },
-          { "width": "50px", "targets": 6 },
-          { "width": "125px", "targets": 7 },
-          { "width": "130px", "targets": 8 },
-          { "width": "50px", "targets": 9 }
+          { "width": "50px", "targets": 0 },
+          { "width": "20px", "targets": 1 },
+          { "width": "20px", "targets": 2 },
+          { "width": "20px", "targets": 3 },
+          { "width": "20px", "targets": 4 },
+          { "width": "20px", "targets": 5 },
+          { "width": "20px", "targets": 6 },
+          { "width": "100px", "targets": 7 },
+          { "width": "110px", "targets": 8 },
+          { "width": "20px", "targets": 9 }
         ]
     } );
 
