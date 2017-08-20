@@ -61,22 +61,22 @@
               </thead>
               <tbody>
                 {{#each dataObj}}
-                 <tr class="{{this.Product_Category}}">
-                   <td>{{this.searchterm}}</td>
-                   <td>{{this.avgtitlescore}}</td>
-                   <td>{{this.maxtitlescore}}</td>
-                   <td>{{this.idealmaxtitlescore}}</td>
-                   <td>{{this.idealmaxtitlescorepercent}}</td>
-                   <td>{{this.mintitlescore}}</td>
-                   <td>{{this.avgtitlescore4to6}}</td>
-                   <td>{{this.avgtitlescore4to6percent}}</td>
-                   <td>{{this.minpricetop5}}</td>
-                   <td>{{this.avgsalestop5}}</td>
-                   <td>{{this.estimatedmonthlyprofits}}</td>
-                   <td>{{this.estimatedsourcingprice}}</td>
-                   <td>{{this.estimatedsourcingpricemedianprice}}</td>
-                   <td>{{this.medianprice}}</td>
-                   <td>{{this.fbafees}}</td>
+                 <tr>
+                   <td>{{checkValue this.searchterm}}</td>
+                   <td>{{checkValue this.avgtitlescore}}</td>
+                   <td>{{checkValue this.maxtitlescore}}</td>
+                   <td>{{checkValue this.idealmaxtitlescore}}</td>
+                   <td>{{checkValue this.idealmaxtitlescorepercent}}</td>
+                   <td>{{checkValue this.mintitlescore}}</td>
+                   <td>{{checkValue this.avgtitlescore4to6}}</td>
+                   <td>{{checkValue this.avgtitlescore4to6percent}}</td>
+                   <td>{{checkValue this.minpricetop5}}</td>
+                   <td>{{checkValue this.avgsalestop5}}</td>
+                   <td>{{checkValue this.estimatedmonthlyprofits}}</td>
+                   <td>{{checkValue this.estimatedsourcingprice}}</td>
+                   <td>{{checkValue this.estimatedsourcingpricemedianprice}}</td>
+                   <td>{{checkValue this.medianprice}}</td>
+                   <td>{{checkValue this.fbafees}}</td>
                    <td>
                      <form class="form-inline" action="/searchDetails" method="post">
                       <div class="form-group">
