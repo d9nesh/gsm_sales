@@ -96,11 +96,11 @@ app.get('/search', (req, res) => {
   });
 });
 
-app.get('/searchDetails', (req, res) => {
+app.post('/searchDetails', (req, res) => {
   var objId;
   var wordScoresData = [];
   var asinDetailsData = [];
-  var searchTermId = req.query.search_term_id;
+  var searchTermId = req.body.search_term_id;
   var searchQuery = `CALL select_pl_searchterms()`;
   searchModel.getData(searchQuery, (error, results) => {
     if (error) {
@@ -122,7 +122,7 @@ app.get('/searchDetails', (req, res) => {
       }
 
       res.render('searchDetails', {
-        // dataObj       : results[objId],
+        dataObj       : results[objId],
         wordScores    : wordScoresData,
         asinDetails   : asinDetailsData
       });

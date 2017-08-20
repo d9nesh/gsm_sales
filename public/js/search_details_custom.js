@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     var table = $('#word-scores').DataTable( {
         scrollY       : 250,
         scrollX       : true,
@@ -6,9 +7,7 @@ $(document).ready(function() {
         paging        : false,
         searching     : false,
     } );
-} );
 
-$(document).ready(function() {
     var table = $('#asin-details').DataTable( {
         scrollY       : 250,
         scrollX       : true,
@@ -18,7 +17,7 @@ $(document).ready(function() {
         fixedColumns  : true,
         order         : [[ 0, "desc" ]],
         columnDefs    : [
-          { "width": "50px", "targets": 0 },
+          { "width": "100px", "targets": 0 },
           { "width": "40px", "targets": 1 },
           { "width": "35px", "targets": 2 },
           { "width": "50px", "targets": 3 },
@@ -30,4 +29,12 @@ $(document).ready(function() {
           { "width": "50px", "targets": 9 }
         ]
     } );
+
+    $(".listing-detail").on('click',function(){
+		 var currentRow=$(this).closest("tr");
+		 var col1=currentRow.find(".asin-label-text").html();
+     $("#asin-detail-label").text(col1);
+		 $('#listing-table').DataTable();
+	});
+
 } );

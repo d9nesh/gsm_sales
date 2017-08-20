@@ -2,3 +2,25 @@ table {
    table-layout: fixed;
    word-wrap:break-word;
  }
+
+ label.asin-detail-label {
+     font-size: x-large;
+ }
+
+ div#listing-table_wrapper {
+    margin-top: 2%;
+}
+
+#asin-detail-label {
+    font-size: large;
+    margin-left: 1%;
+}
+
+label.search-term-label {
+    font-size: x-large;
+}
+
+#search-term-label {
+    font-size: large;
+    margin-left: 1%;
+}
