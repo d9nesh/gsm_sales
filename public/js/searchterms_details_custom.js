@@ -17,7 +17,7 @@ $(document).ready(function() {
         fixedColumns  : true,
         order         : [[ 0, "desc" ]],
         columnDefs    : [
-          { "width": "50px", "targets": 0 },
+          { "width": "60px", "targets": 0 },
           { "width": "20px", "targets": 1 },
           { "width": "20px", "targets": 2 },
           { "width": "20px", "targets": 3 },

@@ -73,21 +73,21 @@ app.get('/api/chartdata', (req, res) => {
   });
 });
 
-app.get('/search', (req, res) => {
+app.get('/searchterms', (req, res) => {
   var searchQuery = `CALL select_pl_searchterms()`;
   searchModel.getData(searchQuery, (error, results) => {
     if (error) {
       return console.error(error);
     }
     else {
-      res.render('search', {
+      res.render('searchterms', {
         dataObj : results
       });
     }
   });
 });
 
-app.post('/searchDetails', (req, res) => {
+app.post('/searchtermsdetails', (req, res) => {
   var searchTermId = req.body.search_term_id;
   var searchQuery = `CALL select_pl_searchterms()`;
   searchModel.getData(searchQuery, (error, results) => {
@@ -99,7 +99,7 @@ app.post('/searchDetails', (req, res) => {
       var asinDetailsObj = searchController.getAsinDetailsObj(searchTermId, results);
       var wordScoresObj = searchController.getWordScoresObj(searchTermId, results);
 
-      res.render('searchDetails', {
+      res.render('searchtermsdetails', {
         dataObj       : dataObjBysearchTermId,
         wordScores    : wordScoresObj,
         asinDetails   : asinDetailsObj

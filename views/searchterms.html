@@ -17,8 +17,8 @@
   <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
 
-  <link rel="stylesheet" href="css/search_custom.css">
-  <script type="text/javascript" src="js/search_custom.js"></script>
+  <link rel="stylesheet" href="css/searchterms_custom.css">
+  <script type="text/javascript" src="js/searchterms_custom.js"></script>
 </head>
 <body>
 {{> header}}
@@ -78,7 +78,7 @@
                    <td>$ {{checkValue this.medianprice}}</td>
                    <td>$ {{checkValue this.fbafees}}</td>
                    <td>
-                     <form class="form-inline" action="/searchDetails" method="post">
+                     <form class="form-inline" action="/searchtermsdetails" method="post">
                       <div class="form-group">
                       <input type="hidden" class="asin-values" name="search_term_id" value="{{this.id}}" />
                       <button type="submit" class="btn btn-primary btn-xs">Details</button>

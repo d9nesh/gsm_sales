@@ -22,7 +22,7 @@ $(document).ready(function() {
           { "width": "30px", "targets": 12 },
           { "width": "30px", "targets": 13 },
           { "width": "30px", "targets": 14 },
-          { "width": "110px", "targets": 15 }
+          { "width": "100px", "targets": 15 }
         ]
     } );
 

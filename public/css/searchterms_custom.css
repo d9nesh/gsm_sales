@@ -3,5 +3,6 @@ table {
    word-wrap:break-word;
  }
  #search-term-table_wrapper {
-     font-size: 12px;
+   font-size: 0.8em;
+   text-align: center;
  }
