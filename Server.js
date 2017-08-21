@@ -126,6 +126,34 @@ app.post('/api/search/insert', (req, res) => {
   });
 });
 
+app.get('/privatemanufacturer', (req, res) => {
+  var dataObj = [];
+  var data = {
+    name        : 'XYZ',
+    address     : 'ABC',
+    website     : 'demo.com',
+    category    : 'abc',
+    port        : 'xyz',
+    information : 'XYZ',
+    saleName    : 'XYZ',
+    saleEmail   : 'xyz@demo.com' ,
+    tech_name   : 'ABC',
+    tech_email  : 'abc@demo.com'
+  };
+
+  for (var i = 1; i <= 10; i++) {
+    dataObj[i] = data;
+  }
+
+  res.render('privatemanufacturer', {
+    dataObj
+  });
+});
+
+app.get('/privatelabelpurchase', (req, res) => {
+  res.render('privatelabelpurchase', {});
+});
+
 hbs.registerHelper('checkValue', (data) => {
   if (data == null) {
     return '-';

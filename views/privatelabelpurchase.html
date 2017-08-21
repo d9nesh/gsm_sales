@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>GSM Sales</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.2.2/css/fixedColumns.dataTables.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
+
+  <link rel="stylesheet" href="css/privatelabelpurchase_custom.css">
+  <script type="text/javascript" src="js/privatelabelpurchase_custom.js"></script>
+</head>
+<body>
+{{> header}}
+<div class="container">
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-12 text-center">
+      <h3>Private Label Purchases</h3>
+      <hr>
+    </div>
+    <div class="col-sm-12">
+      <table id="private-label-purchase-table" class="display" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Search Term</th>
+                  <th>Quantity</th>
+                  <th>Unit Cost</th>
+                  <th>Shipping Location</th>
+                  <th>Product Category</th>
+                  <th>Product Dimension/Weight</th>
+                  <th>Case Dimension/Weight</th>
+                  <th>Case Pack</th>
+                  <th>China Port / Shipping Terms</th>
+                  <th>Amazon Label/UPC</th>
+                  <th>HS Code</th>
+                  <th>Purchase Date</th>
+                  <th>Estimated Shipping Ready Date</th>
+                  <th>Product Leed Time</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                 <tr>
+                   <td>1</td>
+                   <td>ABC</td>
+                   <td>5</td>
+                   <td>$ 10</td>
+                   <td>XYZ</td>
+                   <td>XYZ</td>
+                   <td>XYZ</td>
+                   <td>XYZ</td>
+                   <td>ABC</td>
+                   <td>XYZ</td>
+                   <td>ABC</td>
+                   <td>XYZ</td>
+                   <td>ABC</td>
+                   <td>ABC</td>
+                   <td>XYZ</td>
+                   <td><button type="button" class="btn btn-primary btn-xs">Edit/Back/Save</button></td>
+                 </tr>
+              </tbody>
+          </table>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
