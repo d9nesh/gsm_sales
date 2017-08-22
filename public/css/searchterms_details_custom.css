@@ -29,3 +29,7 @@ label.search-term-label {
 #word-scores_wrapper {
     font-size: 0.8em;
 }
+
+.details-table-section {
+    margin-top: 20px;
+}

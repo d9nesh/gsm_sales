@@ -30,14 +30,38 @@
       <hr>
     </div>
     <div class="col-sm-12">
-      <a href="/searchterms" class="btn btn-primary btn-sm" role="button">Return to Search Terms</a>
+      <div class="col-sm-6">
+        <div class="col-sm-12">
+          <a href="/searchterms" class="btn btn-primary btn-sm" role="button">Return to Search Terms</a>
+        </div>
+        <div class="col-sm-12">
+          <label for="search-term" class="search-term-label">Search Term : </label><label id="search-term-label" for="search-term" class="search-term-label">{{dataObj.searchterm}}</label>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="col-sm-6">
+          <input type="search" class="form-control input-sm" id="calculate-title-score-txt" name="search-term" placeholder="Title Score">
+        </div>
+        <div class="col-sm-6">
+          <button type="button" id="calculate-title-score-btn" class="btn btn-primary btn-sm">Calculate Title Score</button>
+        </div>
+        <div class="col-sm-6">
+          Current Title:
+        </div>
+        <div class="col-sm-6">
+          Current Title Score:
+        </div>
+        <div class="col-sm-6">
+          Proposed Title:
+        </div>
+        <div class="col-sm-6">
+          Proposed Title Score:
+        </div>
+      </div>
     </div>
-    <div class="col-sm-12">
-      <label for="search-term" class="search-term-label">Search Term : </label><label id="search-term-label" for="search-term" class="search-term-label">{{dataObj.searchterm}}</label>
-    </div>
-    <div class="col-sm-12 text-center">
+    <div class="col-sm-12 text-center details-table-section">
       <div class="col-sm-3">
-        <h5>Word Scores</h5>
+        <label for="">Word Scores</label>
         <hr>
         <table id="word-scores" class="display" cellspacing="0" width="100%">
                 <thead>
@@ -59,7 +83,7 @@
             </table>
       </div>
       <div class="col-sm-9">
-        <h5>ASIN Details</h5>
+        <label for="">ASIN Details</label>
         <hr>
         <table id="asin-details" class="display" cellspacing="0" width="100%">
                 <thead>
