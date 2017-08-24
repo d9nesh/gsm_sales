@@ -7,16 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.2.2/css/fixedColumns.dataTables.min.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.14.1/css/ui.jqgrid.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.14.1/jquery.jqgrid.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
-
+  
   <link rel="stylesheet" href="css/privatemanufacturer_custom.css">
   <script type="text/javascript" src="js/privatemanufacturer_custom.js"></script>
 </head>
@@ -29,43 +26,12 @@
       <h3>Private Label Manufacturers</h3>
       <hr>
     </div>
-    <div class="col-sm-12">
-      <table id="private-manufacturer-table" class="display" cellspacing="0" width="100%">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Manufacturer Name</th>
-                  <th>Address</th>
-                  <th>Website</th>
-                  <th>Manufacturing Category</th>
-                  <th>Port</th>
-                  <th>Wire Information</th>
-                  <th>Sales Contact Name</th>
-                  <th>Sales Email Address</th>
-                  <th>Manufacturing/Technical Contact Name</th>
-                  <th>Manufacturing/Technical Contact Email</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each dataObj}}
-                 <tr>
-                   <td>{{@index}}</td>
-                   <td>{{name}}</td>
-                   <td>{{address}}</td>
-                   <td>{{website}}</td>
-                   <td>{{category}}</td>
-                   <td>{{port}}</td>
-                   <td>{{information}}</td>
-                   <td>{{saleName}}</td>
-                   <td>{{saleEmail}}</td>
-                   <td>{{tech_name}}</td>
-                   <td>{{tech_email}}</td>
-                   <td><button type="button" class="btn btn-primary btn-xs">Edit/Back/Save</button></td>
-                 </tr>
-                {{/each}}
-              </tbody>
-          </table>
+    <div class="col-sm-12 text-center">
+      <table id="private-manufacturer-table">
+      </table>
+      <div id="pager2">
+
+      </div>
     </div>
   </div>
 </div>
