@@ -18,19 +18,22 @@ span.ui-jqgrid-title {
   font-size: small;
 }
 
-.ui-widget-header {
-  border: 1px solid #000;;
-  background: #fff;
-}
-
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
   color: #000;
-  background: #fff;
+  background: rgba(0, 0, 0, 0.03);
   border: 1px solid #000;
 }
 
 .ui-widget-content {
   border: 1px solid #000;
+}
+
+.ui-jqgrid .ui-state-hover {
+   background: lightgrey !important;
+}
+
+.ui-jqgrid .ui-jqgrid-htable .ui-jqgrid-labels th div{
+  margin: 10px 2px;
 }

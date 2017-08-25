@@ -1,23 +1,21 @@
 $(document).ready(() => {
 
-
-
   jQuery("#private-manufacturer-table").jqGrid({
    	url:'/api/manufacturer/data/get',
 	datatype: "json",
-   	colNames:['IDs','Manufacturer Name', 'Address', 'Website', 'Manufacturing Category', 'Port', 'Wire Information', 'Sales Contact Name', 'Sales Email Address', 'Manufacturing/Technical Contact Name', 'Manufacturing/Technical Contact Email', 'Action'],
+   	colNames:['ID','Manufacturer Name', 'Address', 'Website', 'Manufacturing Category', 'Port', 'Wire Information', 'Sales Contact Name', 'Sales Email Address', 'Manufacturing/Technical Contact Name', 'Manufacturing/Technical Contact Email', 'Action'],
    	colModel:[
-   		{name:'id',index:'id', width:55, align:"center"},
-   		{name:'name',index:'name', width:90, align:"center", editable:true, editoptions: { dataEvents: [{ type: 'keypress', fn: function(e) {changeVal()}}]} },
-   		{name:'address',index:'address', width:100, align:"center", editable:true},
-   		{name:'website',index:'website', width:80, align:"center", editable:true},
-      {name:'category',index:'category', width:100, align:"center", editable:true},
-      {name:'port',index:'port', width:100, align:"center", editable:true},
-      {name:'information',index:'information', width:100, align:"center", editable:true},
-      {name:'saleName',index:'saleName', width:100, align:"center", editable:true},
-      {name:'saleEmail',index:'saleEmail', width:100, align:"center", editable:true},
-      {name:'tech_name',index:'tech_name', width:100, align:"center", editable:true},
-      {name:'tech_email',index:'tech_email', width:100, align:"center", editable:true},
+   		{name:'id',index:'id', width:40, align:"center"},
+   		{name:'name',index:'name', width:95, align:"center", editable:true, editoptions: { dataEvents: [{ type: 'keypress', fn: function(e) {changeVal()}}]} },
+   		{name:'address',index:'address', width:60, align:"center", editable:true, editoptions: { dataEvents: [{ type: 'keypress', fn: function(e) {changeVal()}}]} },
+   		{name:'website',index:'website', width:80, align:"center", editable:true, editoptions: { dataEvents: [{ type: 'keypress', fn: function(e) {changeVal()}}]} },
+      {name:'category',index:'category', width:130, align:"center", editable:true, editoptions: { dataEvents: [{ type: 'keypress', fn: function(e) {changeVal()}}]} },
+      {name:'port',index:'port', width:50, align:"center", editable:true, editoptions: { dataEvents: [{ type: 'keypress', fn: function(e) {changeVal()}}]} },
+      {name:'information',index:'information', width:120, align:"center", editable:true, editoptions: { dataEvents: [{ type: 'keypress', fn: function(e) {changeVal()}}]} },
+      {name:'saleName',index:'saleName', width:100, align:"center", editable:true, editoptions: { dataEvents: [{ type: 'keypress', fn: function(e) {changeVal()}}]} },
+      {name:'saleEmail',index:'saleEmail', width:130, align:"center", editable:true, editoptions: { dataEvents: [{ type: 'keypress', fn: function(e) {changeVal()}}]} },
+      {name:'tech_name',index:'tech_name', width:100, align:"center", editable:true, editoptions: { dataEvents: [{ type: 'keypress', fn: function(e) {changeVal()}}]} },
+      {name:'tech_email',index:'tech_email', width:130, align:"center", editable:true, editoptions: { dataEvents: [{ type: 'keypress', fn: function(e) {changeVal()}}]} },
       {name:'act',index:'act', width:70, align:"center", sortable:false}
    	],
    	rowNum:10,
@@ -37,7 +35,7 @@ $(document).ready(() => {
   		}
   	},
   	editurl: "/api/manufacturer/data/post",
-    caption:"Private Label Manufacturers"
+    // caption:"Private Label Manufacturers"
     });
     jQuery("#private-manufacturer-table").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false});
     jQuery("#private-manufacturer-table").jqGrid('inlineNav',"#pager2",{edit:false,add:true ,del:false});

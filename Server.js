@@ -164,6 +164,40 @@ app.post('/api/manufacturer/data/post', (req, res) => {
   res.send(data);
 });
 
+app.get('/api/purchase/data/get', (req, res) => {
+  var dataObj = [];
+
+  for (var i = 0; i < 25; i++) {
+    var data = {
+      id          : i,
+      searchTerm  : 'XYZ',
+      quantity    : '0',
+      unitCost    : '$ 0',
+      shipping    : 'XYZ',
+      category    : 'xyz',
+      productWeight: '0',
+      caseWeight  : '0',
+      casePack    : 'XYZ',
+      shippingTerm: 'ABC',
+      label       : 'xyz' ,
+      hsCode      : 'ABC',
+      purchaseDate: '09-12-2017',
+      shippingDate: '09-12-2017',
+      leadTime    : '00:00',
+      // action      : 'XYZ'
+    };
+    dataObj[i] = data;
+  }
+
+  res.send({rows : dataObj});
+});
+
+app.post('/api/purchase/data/post', (req, res) => {
+  var data = req.body;
+  console.log(data);
+  res.send(data);
+});
+
 hbs.registerHelper('checkValue', (data) => {
   if (data == null) {
     return '-';
