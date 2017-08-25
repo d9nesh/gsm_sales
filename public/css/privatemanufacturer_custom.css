@@ -1,4 +1,36 @@
-#private-manufacturer-table_wrapper {
-    font-size: 0.8em;
-    text-align: center;
+.show {
+    display: inline-block !important;
+}
+
+span.ui-jqgrid-title {
+    color: #000;
+    font-size: x-large;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  font-size: small;
+}
+
+.ui-jqgrid-jquery-ui.ui-jqgrid .ui-jqgrid-bdiv tr.ui-row-ltr>td {
+  padding: 3px;
+  font-size: small;
+}
+
+.ui-widget-header {
+  border: 1px solid #000;;
+  background: #fff;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  color: #000;
+  background: #fff;
+  border: 1px solid #000;
+}
+
+.ui-widget-content {
+  border: 1px solid #000;
 }

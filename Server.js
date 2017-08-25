@@ -134,10 +134,10 @@ app.get('/privatelabelpurchase', (req, res) => {
   res.render('privatelabelpurchase', {});
 });
 
-app.get('/api/manufacturer/data', (req, res) => {
+app.get('/api/manufacturer/data/get', (req, res) => {
   var dataObj = [];
 
-  for (var i = 0; i <= 10; i++) {
+  for (var i = 0; i < 25; i++) {
     var data = {
       id          : i,
       name        : 'XYZ',
@@ -158,7 +158,11 @@ app.get('/api/manufacturer/data', (req, res) => {
   res.send({rows : dataObj});
 });
 
-
+app.post('/api/manufacturer/data/post', (req, res) => {
+  var data = req.body;
+  console.log(data);
+  res.send(data);
+});
 
 hbs.registerHelper('checkValue', (data) => {
   if (data == null) {
